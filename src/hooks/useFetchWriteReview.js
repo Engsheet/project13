@@ -20,7 +20,7 @@ function useFetchAllReviews() {
     }
   }
 
-  const { data, isLoading, error } = useQuery({
+  const { data, error } = useQuery({
     queryKey: ["writeReview"],
     queryFn: fetchWriteReviewList,
   });

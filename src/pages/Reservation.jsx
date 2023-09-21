@@ -2,7 +2,7 @@ import { pb } from "@/api/pocketbase";
 import Spinner from "@/components/Spinner";
 import SwiperCategory from "@/components/SwiperCategory";
 import useFetchAllReviews from "@/hooks/useFetchWriteReview";
-import useReservationList from "@/hooks/useReservationList.js";
+import useReservationList, { useFetchVisitData } from "@/hooks/useReservationList.js";
 import { dateFormat, timeFormat } from "@/utils";
 import { array, string } from "prop-types";
 import { useState } from "react";
@@ -50,9 +50,9 @@ ReservedList.propTypes = {
 
 //@ 예약 횟수 컴포넌트
 function ReservationCount({ nickname, visitedList }) {
+  const { data: visitData } = useFetchVisitData();
   const [isSeeMore, setIsSeeMore] = useState(false);
-  let renderList = !isSeeMore ? visitedList.slice(0, 3) : visitedList.slice(0, 9);
-  // const [filterList, setFilterList] = useState(renderList);
+  let renderList = !isSeeMore ? visitData?.slice(0, 3) : visitData?.slice(0, 9);
 
   function handleClickButton() {
     setIsSeeMore(!isSeeMore);
@@ -74,8 +74,8 @@ function ReservationCount({ nickname, visitedList }) {
               <span className="mr-2 w-6 items-center rounded-lg border-2 bg-black text-center text-sm font-bold text-white">
                 {index + 1}
               </span>
-              <h4 className="grow font-semibold">{item.expand.place.title}</h4>
-              <p className="font-bold">27회</p>
+              <h4 className="grow font-semibold">{item[0]}</h4>
+              <p className="font-bold">{item[1]}회</p>
             </div>
             <div className="mt-2 h-1 w-full rounded-md bg-gray-200">
               <div className={`h-1 w-[50%] rounded-md bg-primary`} />
@@ -88,7 +88,7 @@ function ReservationCount({ nickname, visitedList }) {
       <label
         htmlFor="seeMoreButton"
         className={`mx-auto my-5 flex cursor-pointer items-center justify-center gap-1 ${
-          renderList.length < 3 ? "hidden" : ""
+          renderList?.length < 3 ? "hidden" : ""
         }`}
       >
         <input type="checkbox" className="sr-only" onChange={handleClickButton} id="seeMoreButton" />
@@ -108,6 +108,7 @@ ReservationCount.propTypes = {
 
 //@ 예약 리스트
 function ReservationList({ progressList, visitedList, canceledList }) {
+  const { data: visitData } = useFetchVisitData();
   const { data: writeReview } = useFetchAllReviews();
   let renderList = progressList;
   const [filter, setFilter] = useState("all");
@@ -237,9 +238,6 @@ function ReservationList({ progressList, visitedList, canceledList }) {
               </div>
               <div className="flex gap-2 text-lg">
                 <button type="button">
-                  <GoStar />
-                </button>
-                <button type="button">
                   <MdMoreVert />
                 </button>
                 {/* // TODO LINK 연동 필요 */}
@@ -248,10 +246,11 @@ function ReservationList({ progressList, visitedList, canceledList }) {
                 </p>
               </div>
             </div>
+
             <div className="my-2 w-full rounded-2xl border border-gray-200/50 px-4 shadow-md">
               <div className="flex- flex justify-center border-b border-dashed pb-3 pt-4">
                 <p className={`grow ${!item.canceled ? "font-semibold" : "font-semibold text-gray-500"}`}>
-                  {!item.canceled ? "15번째, 35일만에 예약" : "예약 취소"}
+                  {!item.canceled ? "방문 완료" : "예약 취소"}
                 </p>
 
                 {/* // TODO LINK 연동 필요 */}
@@ -272,13 +271,15 @@ function ReservationList({ progressList, visitedList, canceledList }) {
                       : "hidden"
                   }
                 >
-                  <MdOutlineCheck className="mr-1 inline text-primary text-lg" />
+                  <MdOutlineCheck className="mr-1 inline text-lg text-primary" />
                   리뷰 등록됨
                 </p>
               </div>
               <div className="pb-4 pt-3">
-                <p className="font-bold">{item.expand.place.title}</p>
-                <p className="font-semibold text-gray-600">{item.expand.place.category}</p>
+                <dt className="sr-only">주소</dt>
+                <dd className="font-semibold">{item.expand.place.address}</dd>
+                <dt className="sr-only">카테고리</dt>
+                <dd className="font-semibold text-gray-600">{item.expand.place.category}</dd>
               </div>
             </div>
           </li>
