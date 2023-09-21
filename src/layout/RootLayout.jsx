@@ -3,13 +3,12 @@ import Footer from "./Footer";
 import Nav from "./Nav";
 import Header from "./header";
 import { Outlet } from "react-router-dom";
-import {divide} from 'ramda';
 
 function RootLayout() {
   return (
     <div>
       <Header />
-      <div className="bg-gray-50 relative">
+      <div className="bg-gray-50">
         <Profile />
       </div>
       <Nav />
