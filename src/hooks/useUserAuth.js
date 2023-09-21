@@ -1,7 +1,7 @@
 import { pb } from "@/api/pocketbase";
 import { useQuery } from "@tanstack/react-query";
 
-export const useUserFavorites = () => {
+export const useUserAuth = () => {
   const refetchAuth = async () => {
     try {
       const auth = await pb.collection("users").authRefresh();

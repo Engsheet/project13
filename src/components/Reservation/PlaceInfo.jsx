@@ -8,9 +8,11 @@ function PlaceInfo() {
   const { setReservationData } = useReservationStore();
 
   useEffect(() => {
-    setReservationData({ title: title });
-    setReservationData({ booker: userId });
-    setReservationData({ place: placeId });
+    setReservationData({ 
+      title: title,
+      booker: userId,
+      place: placeId 
+    });
   }, []);
 
   return (

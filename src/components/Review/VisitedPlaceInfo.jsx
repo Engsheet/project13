@@ -7,8 +7,10 @@ function VisitedPlaceInfo() {
   const { setReviewData } = useReviewStore();
 
   useEffect(() => {
-    setReviewData({ writer: userId });
-    setReviewData({ place: placeId });
+    setReviewData({ 
+      writer: userId,
+      place: placeId 
+    });
   }, []);
 
   return (

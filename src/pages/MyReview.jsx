@@ -49,9 +49,9 @@ function MyReview() {
                     alt={`나의 ${item.expand.place.title} 리뷰`}
                     className="h-[280px] w-full rounded-lg object-cover"
                   />
-                  <figcaption className="absolute bottom-0 flex w-3/4 flex-col rounded-bl-lg rounded-tr-lg  p-2 text-white">
+                  <figcaption className="absolute bottom-0 flex w-3/5 flex-col rounded-bl-lg rounded-tr-lg bg-black bg-opacity-50  p-2 text-white">
                     <span
-                      className="overflow-hidden text-ellipsis whitespace-nowrap pr-10 text-sm font-light"
+                      className="overflow-hidden text-ellipsis whitespace-nowrap text-sm font-light"
                       title={item.expand.place.address}
                     >
                       {item.expand.place.address}

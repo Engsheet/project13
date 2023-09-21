@@ -20,7 +20,7 @@ function ReservationWrite() {
     try {
       await pb.collection('reservation').create(reservationData);
       alertMessage("예약되었습니다.");
-      navigate("/"); // 리디렉션
+      navigate("/reservation");
     } catch (error) {
       alertMessage("요청하신 작업을 수행하지 못했습니다.","❗");
       console.error('데이터 전송 실패:', error);
@@ -41,7 +41,7 @@ function ReservationWrite() {
       <h1 className="text-lg text-center font-semibold mb-4">예약정보를 입력하세요</h1>
       <form method="POST" className="flex flex-col">
         <ReservationDate/>
-        <ReservationTime/>
+        {/* <ReservationTime/> */}
         <ReservationGuestCount/>
         <ReservationGuestInfo/>
         <div className="flex gap-2">

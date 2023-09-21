@@ -1,5 +1,5 @@
 import { pb } from "@/api/pocketbase";
-import { useUserFavorites } from "@/hooks/useUserFavorites";
+import { useUserAuth } from "@/hooks/useUserAuth";
 import { bool, shape, string } from "prop-types";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
@@ -9,7 +9,7 @@ function FeedItemFooter({ item, isPlace = false }) {
   const userId = pb.authStore.model.id;
   const userFavorites = pb.authStore.model.favorites;
   const [isSave, setIsSave] = useState(false);
-  const { data, refetch } = useUserFavorites();
+  const { data, refetch } = useUserAuth();
 
   useEffect(() => {
     data?.record.favorites.includes(item.expand.place.id) ? setIsSave(true) : setIsSave(false);
@@ -64,7 +64,7 @@ function FeedItemFooter({ item, isPlace = false }) {
         {isSave ? (
           <button aria-label="플레이스 저장하기" className="ml-2 flex flex-col items-center gap-1 text-primary">
             <BsFillBookmarkStarFill className="text-2xl" onClick={handleSave} />
-            <span className="text-xs">저장 됨</span>
+            <span className="text-xs">저장됨</span>
           </button>
         ) : (
           <button aria-label="플레이스 저장하기" className="ml-2 flex flex-col items-center gap-1 text-gray-400">
