@@ -1,3 +1,176 @@
-@import 'tailwindcss/base';
-@import 'tailwindcss/components';
-@import 'tailwindcss/utilities';
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+html {
+  @apply font-suit;
+}
+
+.photo-swiper {
+  width: clamp(280px, 90%, 550px);
+  aspect-ratio: 4/3;
+}
+
+.swiper-button-prev {
+  left: 0;
+  justify-content: left;
+  background: linear-gradient(270deg, rgba(255, 255, 255, 0.3), #fff 20px);
+  @apply text-secondary;
+}
+
+.swiper-button-next {
+  right: 0;
+  justify-content: right;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.3), #fff 20px);
+  @apply text-secondary;
+}
+
+.photo-swiper .swiper-button-prev,
+.photo-swiper .swiper-button-next {
+  background: rgba(0, 0, 0, 0.5);
+  justify-content: center;
+  height: 34px;
+  width: 34px;
+  border-radius: 100%;
+  color: #fff;
+}
+
+.photo-swiper .swiper-button-prev,
+.photo-swiper .swiper-button-next {
+  background: rgba(0, 0, 0, 0.5);
+  justify-content: center;
+  height: 34px;
+  width: 34px;
+  border-radius: 100%;
+  color: #fff;
+}
+
+.photo-swiper .swiper-button-prev {
+  left: 10px;
+}
+
+.photo-swiper .swiper-button-next {
+  right: 10px;
+}
+
+.swiper-button-prev:after,
+.swiper-button-next:after {
+  font-size: 1rem;
+}
+
+.swiper-button-disabled,
+.swiper-button-disabled:after {
+  opacity: 0 !important;
+}
+
+.swiper-pagination {
+  @apply ml-2 w-fit rounded-full bg-black bg-opacity-50 px-2 py-1 text-sm text-white;
+}
+
+/* 캘린더 커스텀 스타일링  */
+.react-calendar {
+  width: 100%;
+  min-width: 300px;
+  max-width: 650px;
+  border: 1px solid #68b0ab;
+  @apply rounded-lg text-sm sm:text-lg;
+}
+
+.react-calendar__tile {
+  max-width: 100%;
+  padding: 12px 4px;
+  background: none;
+  text-align: center;
+  line-height: 16px;
+}
+
+.react-calendar__navigation {
+  display: flex;
+  width: 100%;
+  border-bottom: 1px solid #68b0ab;
+  padding-bottom: 1em;
+  margin-bottom: 1em;
+  align-items: center;
+}
+
+.react-calendar__navigation button {
+  min-width: 48px;
+  min-height: 48px;
+}
+
+.react-calendar__navigation__label {
+  font-weight: bold;
+  font-size: 18px;
+  color: #68b0ab;
+}
+
+.react-calendar__navigation button:disabled {
+  background-color: #fff;
+}
+
+.react-calendar__navigation__label:disabled {
+  background-color: #fff;
+}
+
+.react-calendar__navigation__label {
+  padding: 0.5rem;
+}
+
+.react-calendar__navigation__prev-button:disabled,
+.react-calendar__navigation__next-button:disabled {
+  color: #fff;
+  font-size: 28px;
+}
+
+.react-calendar__navigation button {
+  font-size: 20px;
+  color: #68b0ab;
+  font-weight: 800;
+}
+
+.react-calendar__navigation button:enabled:hover,
+.react-calendar__navigation button:enabled:focus {
+  background-color: rgba(47, 102, 144, 0.5);
+}
+
+.react-calendar__month-view__weekdays {
+  font-weight: bold;
+  font-size: 16px;
+  color: #68b0ab;
+}
+
+.react-calendar__month-view__weekdays abbr {
+  text-decoration: none;
+}
+
+.react-calendar__tile:disabled {
+  background-color: rgba(47, 102, 144, 0.2);
+}
+
+.react-calendar__tile:enabled:hover,
+.react-calendar__tile:enabled:focus {
+  background-color: rgba(47, 102, 144, 0.5);
+  color: white;
+}
+
+.react-calendar__tile--now {
+  color: #68b0ab;
+}
+
+.react-calendar__tile--active:enabled:hover,
+.react-calendar__tile--active:enabled:focus,
+.react-calendar__tile--active:enabled:focus-visible {
+  background: #68b0ab;
+  color: white;
+}
+
+.react-calendar__tile--active {
+  background: #68b0ab;
+  color: white;
+}
+
+.react-calendar__tile--hasActive:enabled:hover,
+.react-calendar__tile--hasActive:enabled:focus {
+  background: #68b0ab;
+  color: white;
+}
