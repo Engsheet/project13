@@ -1,5 +1,5 @@
 import { useInfiniteList, useIntersect } from "@/hooks";
-import useFetchAllReviews from "@/hooks/useFetchWriteReview";
+import { useFetchWriteReviews } from "@/hooks/useFetchWriteReview";
 import { dateFormat, timeFormat } from "@/utils";
 import { Dropdown } from "flowbite-react";
 import { array, object } from "prop-types";
@@ -13,7 +13,10 @@ import { Link } from "react-router-dom";
 function ReservationList({ userInfo, visitedList, canceledList }) {
   let renderList;
   let userId = userInfo.id;
-  const { data: writeReview } = useFetchAllReviews();
+  const { data: writeReview } = useFetchWriteReviews("reviews", {
+    filter: `writer = '${userId}'`,
+    fields: "reservation",
+  });
   const [filter, setFilter] = useState("all");
 
   const {
@@ -79,7 +82,7 @@ function ReservationList({ userInfo, visitedList, canceledList }) {
           className={`cursor-pointer rounded-xl border border-gray-200/50 px-4 py-2 text-sm font-semibold ${
             filter === "all"
               ? `border-0 bg-primary text-white shadow-md`
-              : `hover:border-primary border text-gray-600 shadow-md`
+              : `border text-gray-600 shadow-md hover:border-primary`
           }`}
         >
           <input
@@ -97,7 +100,7 @@ function ReservationList({ userInfo, visitedList, canceledList }) {
           className={`cursor-pointer rounded-xl border border-gray-200/50 px-4 py-2 text-sm font-semibold ${
             filter === "visit"
               ? `border-0 bg-primary text-white shadow-md`
-              : `hover:border-primary border text-gray-600 shadow-md`
+              : `border text-gray-600 shadow-md hover:border-primary`
           }`}
         >
           <input
@@ -117,7 +120,7 @@ function ReservationList({ userInfo, visitedList, canceledList }) {
           className={`cursor-pointer rounded-xl border border-gray-200/50 px-4 py-2 text-sm font-semibold ${
             filter === "cancel"
               ? `border-0 bg-primary text-white shadow-md`
-              : `hover:border-primary border text-gray-600 shadow-md`
+              : `border text-gray-600 shadow-md hover:border-primary`
           }`}
         >
           <input
@@ -148,7 +151,9 @@ function ReservationList({ userInfo, visitedList, canceledList }) {
               <div className="mr-1 flex gap-2 text-lg">
                 <Dropdown inline arrowIcon={null} label={<MdMoreVert />} style={null}>
                   <Link to={"/reservation-write"} state={{ userInfo, item }}>
-                    <p className="mx-3 my-1 bg-transparent text-center text-sm font-semibold hover:text-primaryLight">+ 재예약</p>
+                    <p className="hover:text-primaryLight mx-3 my-1 bg-transparent text-center text-sm font-semibold">
+                      + 재예약
+                    </p>
                   </Link>
                 </Dropdown>
               </div>
@@ -163,7 +168,7 @@ function ReservationList({ userInfo, visitedList, canceledList }) {
                   <p
                     className={
                       !item.canceled && !writeReview?.includes(item.id)
-                        ? "mr-2 flex items-center text-sm font-semibold text-gray-700 group"
+                        ? "group mr-2 flex items-center text-sm font-semibold text-gray-700"
                         : "hidden"
                     }
                   >

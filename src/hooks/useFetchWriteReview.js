@@ -1,33 +1,31 @@
 import { pb } from "@/api/pocketbase";
 import { useQuery } from "@tanstack/react-query";
 
-function useFetchAllReviews() {
-  const userInfo = pb.authStore.model;
-
-  async function fetchWriteReviewList() {
+export const useFetchWriteReviews = (collection, options) => {
+  const fetchWriteReviews = async () => {
     try {
-      const reviews = await pb.collection("reviews").getFullList({
-        filter: `writer = '${userInfo.id}'`,
-        fields: "reservation",
-      });
+      const reviews = await pb.collection(collection).getFullList(options);
+
       let reservationId = reviews.reduce((array, review) => {
         return [...array, review.reservation];
       }, []);
 
       return reservationId;
     } catch (error) {
-      console.error(error);
+      console.error("tryCatch-" + error);
     }
-  }
+  };
 
-  const { data, error } = useQuery({
-    queryKey: ["writeReview"],
-    queryFn: fetchWriteReviewList,
+  const { data, isLoading, error, refetch } = useQuery({
+    queryKey: ["writeReviews"],
+    queryFn: fetchWriteReviews,
   });
 
-  if (error) console.error(error);
+  if (error) console.error("useQuery-" + error);
 
-  return { data };
-}
-
-export default useFetchAllReviews;
+  return {
+    data,
+    isLoading,
+    refetch,
+  };
+};
