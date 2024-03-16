@@ -36,7 +36,7 @@ function UserReview() {
     keywords: [`${result[0].expand.writer.nickname}`, `리뷰`, `맛집후기`],
     image: `${data[0].items[0].photos}`,
   };
-  console.log(result[0].expand.writer.nickname);
+  
   return result.length !== 0 ? (
     <div className="relative min-h-screen pb-28">
       <MetaData props={metaData} />
