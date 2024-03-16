@@ -15,7 +15,7 @@
 
 [📑발표자료](https://www.miricanvas.com/v/12flll1)
 
-[🔗배포주소](https://13est-place.netlify.app/)
+[🔗배포주소](https://bestplace13.netlify.app/)
   * 테스트용 계정 ID: best1234 / PW: best1234
 
 
