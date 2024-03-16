@@ -22,8 +22,10 @@ function PopularRegion({ ...props }) {
         {popularRegionList.map((region, index) => (
           <li
             key={index}
-            className={`relative rounded-lg ${
-              !checkedRegionList.includes(region.name) ? "bg-neutral-100" : "bg-sky-100 shadow-md"
+            className={`group relative rounded-lg ${
+              !checkedRegionList.includes(region.name)
+                ? "bg-neutral-100 hover:bg-opacity-80 hover:shadow-md"
+                : "bg-sky-100 shadow-md hover:bg-opacity-50"
             }`}
             aria-label={region.name + "를 관심 지역에 추가"}
           >
@@ -39,7 +41,9 @@ function PopularRegion({ ...props }) {
               </h4>
               <span
                 className={`absolute right-2 top-0 h-[18px] w-[18px] translate-y-1/2 ${
-                  !checkedRegionList.includes(region.name) ? "bg-check" : "bg-checked"
+                  !checkedRegionList.includes(region.name)
+                    ? "group-hover:bg-check-hover bg-check"
+                    : "group-hover:bg-checked-hover bg-checked"
                 }`}
               ></span>
               <input type="checkbox" className="sr-only" id={"popular " + region.name} onChange={handleUpdateRegion} />

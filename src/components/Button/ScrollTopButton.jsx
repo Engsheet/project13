@@ -12,7 +12,7 @@ function ScrollTopButton() {
   return (
     <button
       type="button"
-      className="flex aspect-square w-11 items-center justify-center rounded-full bg-primary text-xl sm:w-[52px] sm:text-2xl"
+      className="flex aspect-square w-11 items-center justify-center rounded-full focus:bg-secondary hover:bg-secondary bg-primary text-xl sm:w-[52px] sm:text-2xl"
       onClick={handleTop}
       aria-label="맨위로"
     >

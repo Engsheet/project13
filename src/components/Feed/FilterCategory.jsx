@@ -29,10 +29,6 @@ function FilterCategory() {
           <button
             id={item}
             onClick={handleActive}
-            className={`
-        rounded-2xl border p-2 text-gray-700
-        ${selectedCategory.includes(item) ? "bg-primary text-white" : ""}
-      `}
           >
             {item}
           </button>

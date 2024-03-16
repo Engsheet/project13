@@ -39,7 +39,7 @@ function FeedItemFooter({ item, isPlace = false }) {
   };
 
   return (
-    <div className={`${isPlace ? "py-4" : "rounded-lg border p-4"} mb-2`}>
+    <div className={`${isPlace ? "py-4" : "rounded-lg border py-2 pl-4 pr-2"} mb-2`}>
       <div className={`flex items-center justify-between ${isPlace ? "mx-auto max-w-3xl px-3" : ""}`}>
         <dl className="grid gap-1">
           <dt className="sr-only">플레이스 이름</dt>
@@ -59,7 +59,7 @@ function FeedItemFooter({ item, isPlace = false }) {
           <Link
             to={"/reservation-write"}
             state={{ userInfo, item }}
-            className="mr-2 flex flex-col items-center gap-2 text-secondary"
+            className="flex flex-col items-center gap-2 p-2 hover:font-bold hover:text-secondary focus:font-bold focus:text-secondary"
           >
             <BsCalendarCheck className="text-xl" />
             <span className="whitespace-nowrap text-xs">예약</span>
@@ -68,7 +68,7 @@ function FeedItemFooter({ item, isPlace = false }) {
           {isSave ? (
             <button
               aria-label="플레이스 저장하기"
-              className="ml-2 flex flex-col items-center gap-1 whitespace-nowrap text-primary"
+              className="flex flex-col items-center gap-1 whitespace-nowrap p-2 text-primary hover:text-opacity-80"
             >
               <BsFillBookmarkStarFill className="text-2xl" onClick={debounce(() => handleSave(), 500)} />
               <span className="text-xs">저장됨</span>
@@ -76,7 +76,7 @@ function FeedItemFooter({ item, isPlace = false }) {
           ) : (
             <button
               aria-label="플레이스 저장하기"
-              className="ml-2 flex flex-col items-center gap-1 whitespace-nowrap text-gray-400"
+              className="flex flex-col items-center gap-1 whitespace-nowrap p-2 text-gray-400 hover:font-bold hover:text-primary focus:font-bold focus:text-primary"
             >
               <BsBookmarkStar className="text-2xl" onClick={debounce(() => handleSave(), 500)} />
               <span className="text-xs">저장</span>

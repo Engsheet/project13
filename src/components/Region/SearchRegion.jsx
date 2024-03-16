@@ -63,10 +63,15 @@ function SearchRegion({ ...props }) {
 
   return (
     <>
-      <div className="flex items-center gap-1 mt-3">
+      <div className="mt-3 flex items-center gap-1">
         {!isFocusSearchBar || (
-          <button type="button" onClick={handleClickPageBack} className="ml-1 px-1 text-4xl" aria-label="뒤로 가기">
-            <GoChevronLeft />
+          <button
+            type="button"
+            onClick={handleClickPageBack}
+            className="group ml-1 px-1 text-4xl"
+            aria-label="뒤로 가기"
+          >
+            <GoChevronLeft className="hover:text-primary group-focus:text-primary" />
           </button>
         )}
         <div
@@ -88,8 +93,8 @@ function SearchRegion({ ...props }) {
             role="searchbox"
           />
           {!isFocusSearchBar || (
-            <button type="button" onClick={handleClickRemoveText} aria-label="텍스트 삭제하기">
-              <GoX className="text-2xl" />
+            <button type="button" onClick={handleClickRemoveText} aria-label="텍스트 삭제하기" className="group">
+              <GoX className="text-2xl hover:text-primary group-focus:text-primary" />
             </button>
           )}
         </div>
@@ -114,7 +119,11 @@ function SearchRegion({ ...props }) {
                 </div>
                 <button
                   type="button"
-                  className={`h-5 w-5 bg-contain ${!checkedRegionList.includes(region) ? "bg-check" : "bg-checked"}`}
+                  className={`h-5 w-5 bg-contain bg-no-repeat ${
+                    !checkedRegionList.includes(region)
+                      ? "hover:bg-check-hover bg-check"
+                      : "hover:bg-checked-hover bg-checked"
+                  }`}
                   onClick={handleUpdateRegion}
                 ></button>
               </li>

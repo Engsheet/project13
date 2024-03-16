@@ -21,8 +21,8 @@ function FilterRegion() {
       spaceBetween={8}
       slidesPerView={"auto"}
       navigation={true}
-      keyboard={{enabled: true}}
-      modules={[Navigation,Keyboard]}
+      keyboard={{ enabled: true }}
+      modules={[Navigation, Keyboard]}
       className="pb-1 text-sm sm:text-base"
     >
       <SwiperSlide
@@ -33,8 +33,10 @@ function FilterRegion() {
       >
         <li>
           <button
-            className={`rounded-md bg-gray-50 p-2 text-gray-500 shadow  ${
-              selectedRegion === "전체" ? "bg-secondary text-white" : ""
+            className={`rounded-md border border-transparent bg-gray-50 p-2 text-gray-500 shadow  ${
+              selectedRegion === "전체"
+                ? "bg-secondary font-bold text-white"
+                : "hover:border-secondary hover:font-semibold hover:text-black"
             }`}
             id={"전체"}
             onClick={handleActive}
@@ -54,11 +56,13 @@ function FilterRegion() {
           >
             <li key={crypto.randomUUID()}>
               <button
-                className={`rounded-md bg-gray-50 p-2 text-gray-500 shadow  ${
-                  selectedRegion === item ? "bg-secondary text-white" : ""
-                }`}
                 id={item}
                 onClick={handleActive}
+                className={`rounded-md border border-transparent outline-none bg-gray-50 p-2 text-gray-500 shadow  ${
+                  selectedRegion === item
+                    ? "bg-secondary font-bold text-white"
+                    : "hover:border-secondary focus:border-secondary focus:font-semibold hover:font-semibold focus:text-black hover:text-black"
+                }`}
               >
                 {item}
               </button>
@@ -72,7 +76,10 @@ function FilterRegion() {
         }}
       >
         <li>
-          <Link to={"/region"} className="block rounded-md bg-gray-50 p-2 text-gray-500 shadow">
+          <Link
+            to={"/region"}
+            className="block rounded-md border border-transparent bg-gray-50 p-2 text-gray-500 shadow hover:border-secondary hover:font-semibold hover:text-black"
+          >
             + 관심지역
           </Link>
         </li>

@@ -11,6 +11,7 @@ import { Link } from "react-router-dom";
 function FeedItemHeader({ item, isUser }) {
   const myId = pb.authStore.model.id;
   const [isFollow, setIsFollow] = useState(false);
+  const [isHoverUnfollowBtn, setIsHoverUnfollowBtn] = useState(false);
   const { setFollowCount } = useFollowCountStore();
   const { data, refetch } = useFetchList("follow", { expand: "owner" });
   const { data: reviewData } = useFetchList("reviews", { filter: `writer='${item.writer}'` });
@@ -57,15 +58,26 @@ function FeedItemHeader({ item, isUser }) {
     refetchWriter();
   };
 
+  const handleMouseOverUnfollowBtn = () => {
+    setIsHoverUnfollowBtn(true);
+  };
+
+  const handleMouseOutUnfollowBtn = () => {
+    setIsHoverUnfollowBtn(false);
+  };
+
   return (
-    <div className={`${isUser ? "mx-auto max-w-3xl p-3" : ""} flex items-center justify-between`}>
-      <Link to={myId === item.expand.writer.id ? "my-review" : `/user-review/${item.expand.writer.id}`}>
+    <div className={`${!isUser || "mx-auto max-w-3xl p-3"} flex items-center justify-between`}>
+      <Link
+        to={myId === item.expand.writer.id ? "my-review" : `/user-review/${item.expand.writer.id}`}
+        className="group"
+      >
         <dl className="grid items-center gap-x-1">
           <dt className="sr-only">작성자 프로필</dt>
           <dd
             className={`${
               isUser ? "h-16 w-16" : "h-12 w-12"
-            } col-start-1 row-start-1 row-end-3 mr-1 rounded-full bg-white p-0.5 shadow-[0_1px_6px_rgba(0,0,0,0.1)]`}
+            } col-start-1 row-start-1 row-end-3 mr-1 rounded-full bg-white p-0.5 shadow-[0_1px_6px_rgba(0,0,0,0.1)] group-hover:bg-secondary group-focus:bg-secondary`}
           >
             {item.expand.writer.avatar ? (
               <img
@@ -81,12 +93,12 @@ function FeedItemHeader({ item, isUser }) {
           <dd className={`${isUser ? "-mb-4 h-fit text-lg" : ""} col-start-2 col-end-6 font-bold`}>
             {item.expand.writer.nickname}
           </dd>
-          <dt className={`${isUser ? "h-fit text-sm" : "text-xs"} col-start-2 row-start-2`}>리뷰</dt>
-          <dd className={`${isUser ? "h-fit text-sm" : "text-xs"} col-start-3 row-start-2 text-primary`}>
+          <dt className={`${isUser ? "h-fit text-sm" : "text-xs font-semibold"} col-start-2 row-start-2`}>리뷰</dt>
+          <dd className={`${isUser ? "h-fit text-sm" : "text-xs font-semibold"} col-start-3 row-start-2 text-primary`}>
             {reviewData && reviewData?.length}
           </dd>
-          <dt className={`${isUser ? "h-fit text-sm" : "text-xs"} col-start-4 row-start-2`}>팔로워</dt>
-          <dd className={`${isUser ? "h-fit text-sm" : "text-xs"} col-start-5 row-start-2 text-primary`}>
+          <dt className={`${isUser ? "h-fit text-sm" : "text-xs font-semibold"} col-start-4 row-start-2`}>팔로워</dt>
+          <dd className={`${isUser ? "h-fit text-sm" : "text-xs font-semibold"} col-start-5 row-start-2 text-primary`}>
             {followData && followData[0].followers.length}
           </dd>
         </dl>
@@ -97,15 +109,17 @@ function FeedItemHeader({ item, isUser }) {
         </div>
       ) : isFollow ? (
         <button
-          className="h-8 rounded-md bg-gray-100 px-3 text-sm text-gray-500"
+          className="h-8 rounded-md bg-secondary px-3 text-sm font-bold text-white hover:bg-gray-500 focus:bg-gray-500"
           id={item.expand.writer.id}
           onClick={debounce((e) => handleFollow(e), 500)}
+          onMouseOver={handleMouseOverUnfollowBtn}
+          onMouseOut={handleMouseOutUnfollowBtn}
         >
-          팔로우 취소
+          {!isHoverUnfollowBtn ? "팔로잉" : "언팔로우"}
         </button>
       ) : (
         <button
-          className="h-8 rounded-md bg-secondary px-3 text-sm text-white"
+          className="h-8 rounded-md border border-secondary px-3 text-sm font-bold text-secondary hover:bg-secondary hover:text-white focus:bg-secondary focus:text-white"
           id={item.expand.writer.id}
           onClick={debounce((e) => handleFollow(e), 500)}
         >

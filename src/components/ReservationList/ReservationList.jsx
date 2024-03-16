@@ -1,13 +1,13 @@
-import { useInfiniteList, useIntersect } from '@/hooks';
-import useFetchAllReviews from '@/hooks/useFetchWriteReview';
-import { dateFormat, timeFormat } from '@/utils';
-import { Dropdown } from 'flowbite-react';
-import { array, object } from 'prop-types';
-import { useState } from 'react';
-import { BsPencilFill } from 'react-icons/bs';
-import { MdMoreVert, MdOutlineCheck } from 'react-icons/md';
-import { PiCalendarCheckBold, PiCalendarXBold } from 'react-icons/pi';
-import { Link } from 'react-router-dom';
+import { useInfiniteList, useIntersect } from "@/hooks";
+import useFetchAllReviews from "@/hooks/useFetchWriteReview";
+import { dateFormat, timeFormat } from "@/utils";
+import { Dropdown } from "flowbite-react";
+import { array, object } from "prop-types";
+import { useState } from "react";
+import { BsPencilFill } from "react-icons/bs";
+import { MdMoreVert, MdOutlineCheck } from "react-icons/md";
+import { PiCalendarCheckBold, PiCalendarXBold } from "react-icons/pi";
+import { Link } from "react-router-dom";
 
 //@ 예약 리스트
 function ReservationList({ userInfo, visitedList, canceledList }) {
@@ -77,7 +77,9 @@ function ReservationList({ userInfo, visitedList, canceledList }) {
         <label
           htmlFor="filterAllButton"
           className={`cursor-pointer rounded-xl border border-gray-200/50 px-4 py-2 text-sm font-semibold ${
-            filter === "all" ? `border-0 bg-primary text-white shadow-md` : `border text-gray-600 shadow-md`
+            filter === "all"
+              ? `border-0 bg-primary text-white shadow-md`
+              : `hover:border-primary border text-gray-600 shadow-md`
           }`}
         >
           <input
@@ -93,7 +95,9 @@ function ReservationList({ userInfo, visitedList, canceledList }) {
         <label
           htmlFor="filterVisitButton"
           className={`cursor-pointer rounded-xl border border-gray-200/50 px-4 py-2 text-sm font-semibold ${
-            filter === "visit" ? `border-0 bg-primary text-white shadow-md` : `border text-gray-600 shadow-md`
+            filter === "visit"
+              ? `border-0 bg-primary text-white shadow-md`
+              : `hover:border-primary border text-gray-600 shadow-md`
           }`}
         >
           <input
@@ -111,7 +115,9 @@ function ReservationList({ userInfo, visitedList, canceledList }) {
         <label
           htmlFor="filterCancelButton"
           className={`cursor-pointer rounded-xl border border-gray-200/50 px-4 py-2 text-sm font-semibold ${
-            filter === "cancel" ? `border-0 bg-primary text-white shadow-md` : `border text-gray-600 shadow-md`
+            filter === "cancel"
+              ? `border-0 bg-primary text-white shadow-md`
+              : `hover:border-primary border text-gray-600 shadow-md`
           }`}
         >
           <input
@@ -139,10 +145,10 @@ function ReservationList({ userInfo, visitedList, canceledList }) {
                   {dateFormat(item.date)} <span className="mx-1 font-normal opacity-40">|</span> {timeFormat(item.date)}
                 </p>
               </div>
-              <div className="flex gap-2 text-lg mr-1">
+              <div className="mr-1 flex gap-2 text-lg">
                 <Dropdown inline arrowIcon={null} label={<MdMoreVert />} style={null}>
                   <Link to={"/reservation-write"} state={{ userInfo, item }}>
-                    <p className="mx-3 my-1 bg-transparent text-center  text-sm font-semibold">+ 재예약</p>
+                    <p className="mx-3 my-1 bg-transparent text-center text-sm font-semibold hover:text-primaryLight">+ 재예약</p>
                   </Link>
                 </Dropdown>
               </div>
@@ -157,11 +163,11 @@ function ReservationList({ userInfo, visitedList, canceledList }) {
                   <p
                     className={
                       !item.canceled && !writeReview?.includes(item.id)
-                        ? "mr-2 flex items-center text-sm font-semibold text-gray-700"
+                        ? "mr-2 flex items-center text-sm font-semibold text-gray-700 group"
                         : "hidden"
                     }
                   >
-                    <BsPencilFill className="mr-1 inline text-primary" /> 리뷰 작성하기
+                    <BsPencilFill className="mr-1 inline text-primary group-hover:text-black" /> 리뷰 작성하기
                   </p>
                 </Link>
                 <p

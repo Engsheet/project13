@@ -10,7 +10,7 @@ function PhotoLayout({ item }) {
             key={crypto.randomUUID()}
             src={getPbImageURL(item, fileName)}
             alt="리뷰 사진"
-            className="aspect-video w-full rounded-lg object-cover"
+            className="aspect-video w-full rounded-lg object-cover hover:opacity-70"
           />
         ))
       ) : item.photos.length === 2 ? (
@@ -20,7 +20,7 @@ function PhotoLayout({ item }) {
               key={crypto.randomUUID()}
               src={getPbImageURL(item, fileName)}
               alt="리뷰 사진"
-              className="w-1/2 object-cover"
+              className="w-1/2 object-cover hover:opacity-70"
             />
           ))}
         </div>
@@ -36,7 +36,7 @@ function PhotoLayout({ item }) {
               key={crypto.randomUUID()}
               src={getPbImageURL(item, fileName)}
               alt="리뷰 사진"
-              className="h-full w-full object-cover"
+              className="h-full w-full object-cover hover:opacity-70"
             />
           ))}
         </div>
@@ -52,10 +52,10 @@ function PhotoLayout({ item }) {
               key={crypto.randomUUID()}
               src={getPbImageURL(item, fileName)}
               alt="리뷰 사진"
-              className="h-full w-full object-cover"
+              className="h-full w-full object-cover hover:opacity-70"
             />
           ))}
-          <div className="absolute -right-0.5 bottom-0 flex h-1/2 w-[40%] items-center justify-center rounded-br-lg bg-black bg-opacity-40 text-lg font-bold text-white sm:text-xl">
+          <div className="absolute -right-0.5 bottom-0 flex h-1/2 w-[40%] items-center justify-center rounded-br-lg bg-black bg-opacity-40 text-lg font-bold text-white hover:bg-opacity-60 sm:text-xl">
             +{item.photos.slice(3).length}
           </div>
         </div>

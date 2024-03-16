@@ -20,14 +20,17 @@ function SuggestRegion({ ...props }) {
     <div>
       <h3 className="text-lg font-bold">이런 지역 어때요?</h3>
       <p className="my-2 mb-4">
-        <span className="font-extrabold">{nickname}</span>님이 좋아하실 것 같아요
+        <span className="font-extrabold text-secondary decoration-secondary hover:underline">{nickname}</span>&nbsp;님이
+        좋아하실 것 같아요
       </p>
       <ul className="grid grid-cols-2 gap-3">
         {suggestRegionList.map((region, index) => (
           <li
             key={index}
-            className={`relative rounded-lg rounded-xl ${
-              !checkedRegionList.includes(region.name) ? "bg-neutral-100" : "bg-sky-100 shadow-md"
+            className={`group relative rounded-lg rounded-xl ${
+              !checkedRegionList.includes(region.name)
+                ? "bg-neutral-100 hover:bg-opacity-80 hover:shadow-md"
+                : "bg-sky-100 shadow-md hover:bg-opacity-50"
             }`}
             aria-label={region.name + "를 관심 지역에 추가"}
           >
@@ -44,7 +47,9 @@ function SuggestRegion({ ...props }) {
               </h4>
               <span
                 className={`absolute right-4 top-1/2 h-[18px] w-[18px] -translate-y-1/2 ${
-                  !checkedRegionList.includes(region.name) ? "bg-check" : "bg-checked"
+                  !checkedRegionList.includes(region.name)
+                    ? "group-hover:bg-check-hover bg-check"
+                    : "group-hover:bg-checked-hover bg-checked"
                 }`}
               ></span>
               <input type="checkbox" className="sr-only" id={"suggest " + region.name} onChange={handleUpdateRegion} />

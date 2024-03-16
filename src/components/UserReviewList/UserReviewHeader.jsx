@@ -51,7 +51,7 @@ function UserReviewHeader({ item }) {
   };
 
   return (
-    <header className="sticky top-0 z-10 bg-gray-50 py-4 shadow-[0_6px_6px_-2px_rgba(0,0,0,0.1)]">
+    <header className="sticky top-[-4px] z-10 bg-gray-50 py-4 shadow-[0_6px_6px_-2px_rgba(0,0,0,0.1)]">
       <div className="mx-auto flex max-w-3xl items-center justify-between px-3">
         <Link to={myId === userId ? "/my-review" : `/user-review/${userId}`}>
           <dl className="flex items-center gap-1">
@@ -69,11 +69,11 @@ function UserReviewHeader({ item }) {
             </dd>
             <dt className="sr-only">작성자</dt>
             {myId === userId ? (
-              <dd className="text-xl font-bold">
+              <dd className="font-bold">
                 <span className="text-base font-semibold">MY 플레이스</span>
               </dd>
             ) : (
-              <dd className="text-xl font-bold">
+              <dd className="font-bold">
                 {item.expand.writer.nickname}
                 <span className="text-base font-semibold"> 님의 플레이스</span>
               </dd>

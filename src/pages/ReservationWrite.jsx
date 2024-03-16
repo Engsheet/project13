@@ -91,8 +91,8 @@ function ReservationWrite() {
 
       <Header />
       <main className="mx-auto mb-10 max-w-3xl px-3">
-        <button onClick={() => setOpenModal(true)} className="float-right">
-          <GoX className="mr-1 text-2xl" />
+        <button onClick={() => setOpenModal(true)} className="group float-right">
+          <GoX className="mr-1 text-2xl group-hover:text-primary group-focus:text-primary" />
         </button>
         <section className="mx-auto my-8 mt-4 max-w-3xl flex-wrap gap-4">
           <h2 className="hidden">가게정보</h2>
@@ -108,10 +108,15 @@ function ReservationWrite() {
               <Button
                 text="취소하기"
                 onClick={() => setOpenModal(true)}
-                bgColor="bg-gray-100"
+                bgColor="bg-gray-100 hover:bg-gray-200"
                 textColor="text-red-500"
               />
-              <Button type="submit" text="등록하기" onClick={handleSubmit} />
+              <Button
+                type="submit"
+                text="등록하기"
+                bgColor="bg-primary hover:bg-opacity-80 focus:bg-opacity-80"
+                onClick={handleSubmit}
+              />
             </div>
           </form>
         </section>

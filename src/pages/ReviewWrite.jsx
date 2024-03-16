@@ -99,7 +99,7 @@ function ReviewWrite() {
           />
           <ReviewPhoto name="photos" />
           <ReviewKeyword name="keywords" />
-          <div className="sticky bottom-0 z-10 flex gap-2 bg-gradient-to-b from-white/10 from-10% to-white to-40% pb-3 pt-8">
+          <div className="focus:bg-opacity-80 bottom-0 sticky z-10 flex gap-2 bg-gradient-to-b from-white/10 from-10% to-white to-40% pb-3 pt-8 hover:bg-opacity-80">
             <Button text="취소하기" onClick={() => setOpenModal(true)} bgColor="bg-gray-100" textColor="text-red-500" />
             <Button type="submit" text="등록하기" onClick={handleSubmit} />
             {/* isValid={!isValid(reviewData)} */}

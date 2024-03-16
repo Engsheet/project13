@@ -33,7 +33,8 @@ function ReservedList({ reservedList, userInfo }) {
         <>
           <h3 className="mb-4 mt-2 text-lg font-bold">
             <BsCalendarWeek className="mr-2 inline align-bottom text-3xl" />
-            <span className="mx-0.5 text-secondary">{userInfo.nickname}</span>님이 현재 예약한 정보에요
+            <span className="mx-0.5 text-secondary decoration-secondary hover:underline">{userInfo.nickname}</span>님이
+            현재 예약한 정보에요
           </h3>
           <ul>
             {reservedList.map((item, index) => (
@@ -53,14 +54,14 @@ function ReservedList({ reservedList, userInfo }) {
                   <Dropdown inline arrowIcon={null} label={<MdMoreVert />}>
                     <button
                       type="button"
-                      className="mx-3 block border-b border-gray-500 bg-transparent py-1 text-center text-sm font-semibold"
+                      className="hover:text-primaryLight mx-3 block border-b border-gray-500 bg-transparent py-1 text-center text-sm font-semibold"
                       onClick={handleClickVisitBtn}
                     >
                       방문 확인
                     </button>
                     <button
                       type="button"
-                      className="mx-3 block bg-transparent py-1 text-center text-sm font-semibold"
+                      className="hover:text-primaryLight mx-3 block bg-transparent py-1 text-center text-sm font-semibold"
                       onClick={handleClickCancelBtn}
                     >
                       예약 취소

@@ -45,9 +45,13 @@ function SwiperCategory() {
               id={item}
               onClick={handleActive}
               className={`
-        rounded-2xl border p-2 text-gray-700
-        ${selectedCategory.includes(item) ? "bg-primary text-white" : ""}
-      `}
+                rounded-2xl border p-2 outline-none
+                ${
+                  selectedCategory.includes(item)
+                    ? "hover:bg-primaryLight focus:bg-primaryLight border-primary bg-primary font-bold text-white hover:font-normal focus:font-normal focus:text-black"
+                    : "text-gray-700 hover:border-primary hover:font-bold focus:border-primary focus:font-bold"
+                }
+              `}
             >
               {item}
             </button>

@@ -13,7 +13,7 @@ import { alertMessage } from "@u";
 import MetaData from "@c/MetaData";
 
 //@ 관심지역 설정 컴포넌트
-function SetRegion() {
+function Region() {
   const userInfo = pb.authStore.model;
   const navigate = useNavigate();
   const [checkedRegionList, setCheckedRegionList] = useState([]);
@@ -61,16 +61,16 @@ function SetRegion() {
   
   return (
     <>
-    <MetaData props={metaData} />
+      <MetaData props={metaData} />
       <ScrollToTop />
       <Header />
       <main className="mx-auto max-w-3xl px-3">
-        <div className="sticky top-0 z-10 bg-gradient-to-b from-white from-80% to-white/10 to-90% pb-8">
+        <div className="sticky top-[-4px] z-10 bg-gradient-to-b from-white from-80% to-white/10 to-90% pb-8">
           {isFocusSearchBar || (
             <div>
               {/* 창 닫기 */}
-              <Link to="/" className="float-right mr-1" title="설정 닫기">
-                <GoX className="mt-3 text-3xl" />
+              <Link to="/" className="float-right mr-1 group" title="설정 닫기">
+                <GoX className="mt-3 text-3xl hover:text-primary group-focus:text-primary" />
               </Link>
               {/* 제목 */}
               <h2 className="mb-3 pt-8 text-2xl font-bold">관심지역을 설정해주세요!</h2>
@@ -85,7 +85,7 @@ function SetRegion() {
           />
         </div>
         {isFocusSearchBar || (
-          <div className="flex flex-col gap-8">
+          <div className="flex flex-col gap-8 px-1">
             {/* 내 관심지역 */}
             <SelectedRegionList
               checkedRegionList={checkedRegionList}
@@ -109,4 +109,4 @@ function SetRegion() {
   );
 }
 
-export default SetRegion;
+export default Region;

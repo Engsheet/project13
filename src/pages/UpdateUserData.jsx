@@ -10,7 +10,7 @@ import SignForm from "@c/SignInUp/SignForm";
 import Header from "@l/Header";
 import MetaData from "@c/MetaData";
 
-function Register() {
+function UpdateUserData() {
   const navigate = useNavigate();
 
   const [avatar, setAvatar] = useState(pb.authStore.model.avatar);
@@ -109,4 +109,4 @@ function Register() {
   );
 }
 
-export default Register;
+export default UpdateUserData;

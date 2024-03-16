@@ -55,11 +55,11 @@ function Favorites() {
       {favorites ? (
         <main>
           <h2 className="sr-only">저장 페이지</h2>
+          <h3 className="py-4 text-center text-xl font-extrabold"><span className="mr-2">🍴</span>내가 저장한 맛집</h3>
           <div id="map" className="my-2 h-96 w-full rounded-lg bg-gray-300">
             <Kakaomap items={favorites} />
           </div>
-          <h3 className="border-b py-4 text-lg font-bold">내가 저장한 장소</h3>
-          <ul>
+          <ul className="mt-6 mb-10">
             {favorites?.map((item) => (
               <li key={crypto.randomUUID()} className="border-b border-gray-100 py-4">
                 <div className="flex justify-between">
@@ -83,8 +83,12 @@ function Favorites() {
                       setOpenModal(true);
                     }}
                     aria-label="장소 삭제하기"
+                    className="group h-8 w-8"
                   >
-                    <BsTrashFill className="text-xl text-secondary" aria-hidden />
+                    <BsTrashFill
+                      className="m-auto text-center text-xl text-primary hover:text-secondary group-focus:text-secondary"
+                      aria-hidden
+                    />
                   </button>
                 </div>
                 <figure className="flex h-28 gap-1 pt-3">

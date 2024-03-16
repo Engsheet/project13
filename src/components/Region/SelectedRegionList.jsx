@@ -14,11 +14,15 @@ function SelectedRegionList({ ...props }) {
 
   return (
     <div>
-      <div className="mb-4 flex justify-center items-end">
-        <h3 className="text-lg font-bold grow">
+      <div className="mb-4 flex items-end justify-center">
+        <h3 className="grow text-lg font-bold">
           내 관심지역 <span className="text-primary">{checkedRegionList.length}</span>
         </h3>
-        <button type="button" className="text-sm font-semibold text-gray-700" onClick={props.onRemove}>
+        <button
+          type="button"
+          className="text-sm font-semibold text-gray-700 hover:text-primary"
+          onClick={props.onRemove}
+        >
           전체 삭제
         </button>
       </div>
@@ -28,8 +32,8 @@ function SelectedRegionList({ ...props }) {
           <li key={index} className="my-1 flex items-center justify-between rounded-lg border border-primary px-4 py-2">
             <FaLocationArrow className="mr-2 inline-block text-primary" />
             <h4 className="grow text-base font-bold">{region}</h4>
-            <button type="button" onClick={handleRemoveButton} aria-label="항목 삭제">
-              <GoX className="text-xl" />
+            <button type="button" onClick={handleRemoveButton} aria-label="항목 삭제" className="group">
+              <GoX className="text-xl hover:text-primary group-focus:text-primary" />
             </button>
           </li>
         ))}

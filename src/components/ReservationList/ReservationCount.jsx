@@ -26,10 +26,13 @@ function ReservationCount({ userInfo, visitedList }) {
   return (
     <div className="my-8 border-b border-dashed border-gray-500/50 pb-8">
       <h3 className="mb-6 text-lg font-bold">
-        <MdOutlineCheck className="mr-2 inline align-bottom text-3xl" />
-        <span className="mx-0.5 text-secondary">{userInfo.nickname}</span>님은 LION PLACE로
-        <span className="text-secondary"> {visitedList?.length}회 </span>
-        예약하고 방문했어요
+        <MdOutlineCheck className="mr-2 inline text-3xl" />
+        <p className="inline align-bottom">
+          <span className="text-secondary decoration-secondary hover:underline">{userInfo.nickname}</span>
+          &nbsp;님은 LION PLACE로&nbsp;
+          <span className="text-secondary decoration-secondary hover:underline">{visitedList?.length}회</span>
+          &nbsp;예약하고 방문했어요
+        </p>
       </h3>
 
       <ol>
@@ -40,7 +43,7 @@ function ReservationCount({ userInfo, visitedList }) {
                 {index + 1}
               </span>
               <h4 className="grow font-semibold">{item[0]}</h4>
-              <p className="font-bold mr-1">{item[1]}회</p>
+              <p className="mr-1 font-bold">{item[1]}회</p>
             </div>
             <div className="mt-2 h-0.5 w-full rounded-md bg-gray-200">
               <div
@@ -67,8 +70,12 @@ function ReservationCount({ userInfo, visitedList }) {
           onFocus={handleFocusButton}
           onBlur={handleFocusButton}
         />
-        <p className={onFocus ? "border-2 border-black rounded-md px-1" : "py-0.5"}>
-          <span>{!isSeeMore ? "더보기" : "접기"}</span>
+        <p
+          className={`flex items-center rounded-md border-2 px-1.5 hover:font-bold ${
+            onFocus ? "border-black font-bold" : "border-transparent"
+          }`}
+        >
+          <span>{!isSeeMore ? "더보기" : "접기"}&nbsp;</span>
           {!isSeeMore ? <BsChevronDown className="inline" /> : <BsChevronUp className="inline" />}
         </p>
       </label>
