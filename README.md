@@ -6,36 +6,29 @@
   <div align="center"><img src="./readme/BestPlace.png" width="30%"></div>
 
 
-
-
 ## 📢 Information
 
 📅 개발 기간 | 2023. 09. 04 ~ 2023. 09. 24
 
-📌 프로젝트 주제 | 맛집 예약/리뷰 서비스 - [네이버MY플레이스](https://m.place.naver.com/my/home) 클론 코딩
+📌 프로젝트 주제 | 맛집 예약 및 리뷰 SNS 서비스
+  * 모바일 뷰를 전제로 만들었습니다. 
 
-[📑발표자료]([https://](https://www.miricanvas.com/v/12flll1))
+[📑발표자료](https://www.miricanvas.com/v/12flll1)
 
 [🔗배포주소](https://13est-place.netlify.app/)
+  * 테스트용 계정 ID: best1234 / PW: best1234
+
 
 
 ## 🤗 Team
 
 Name | Profile |GitHub 
 ----- | ----- | -----
-**김규민** |<img src="./readme/kim.png" width="50" height="50"> | https://github.com/Engsheet
-**백상호** |<img src="./readme/baek.jpeg" width="70" height="50"> | https://github.com/bigCoDult
-**신현주** |<img src="./readme/shin.jpg" width="50" height="60"> | https://github.com/shju0317
-**차지훈** |<img src="./readme/cha.jpg" width="60" height="50"> | https://github.com/cfgop23
+**김규민** |<div align="center"><img src="./readme/kim.png" width="50" height="50"></div> | https://github.com/migugin
+**백상호** |<div align="center"><img src="./readme/baek.jpeg" width="70" height="50"></div> | https://github.com/bigCoDult
+**신현주** |<div align="center"><img src="./readme/shin.jpg" width="50" height="60"></div> | https://github.com/shju0317
+**차지훈** |<div align="center"><img src="./readme/cha.jpg" width="60" height="50"></div> | https://github.com/cfgop23
 
-
-## 🚩 Goal
-
-🔖 **깨끗하게!** 클린 코드! 다른 팀원도 잘 알아볼 수 있도록 가독성 좋은 코드로 작성하기
-
-🔖 **즐겁게!** 시작부터 끝까지 불화 없이 서로 돕는 팀 분위기
-
-🔖 **완성도 있게!** 양보다 질! 필요한 기능과 불필요한 기능을 판별 → 분량은 최적화, 완성도 있는 결과물 만들기
 
 
 ## 📐 Convention
@@ -60,13 +53,15 @@ Name | Profile |GitHub
 
 ## 🔨 Stack
 
-<img src="https://img.shields.io/badge/html5-E34F26?style=for-the-badge&logo=html5&logoColor=white"> <img src="https://img.shields.io/badge/javascript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black%22%3E"> <img src="https://img.shields.io/badge/css3-1572B6?style=for-the-badge&logo=css3&logoColor=white"> <img src="https://img.shields.io/badge/tailwindcss-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white"> <img src="https://img.shields.io/badge/node.js-339933?style=for-the-badge&logo=Node.js&logoColor=white"> <img src="https://img.shields.io/badge/vite-646CFF?style=for-the-badge&logo=vite&logoColor=white"> <img src="https://img.shields.io/badge/pnpm-F69220?style=for-the-badge&logo=pnpm&logoColor=white"> <img src="https://img.shields.io/badge/git-F05032?style=for-the-badge&logo=git&logoColor=white"> <img src="https://img.shields.io/badge/eslint-4B32C3?style=for-the-badge&logo=eslint&logoColor=white"> <img src="https://img.shields.io/badge/prettier-F7B93E?style=for-the-badge&logo=prettier&logoColor=white"> <img src="https://img.shields.io/badge/immer-00E7C3?style=for-the-badge&logo=immer&logoColor=white"> <img src="https://img.shields.io/badge/reactquery-FF4154?style=for-the-badge&logo=reactquery&logoColor=white"> <img src="https://img.shields.io/badge/reactrouter-CA4245?style=for-the-badge&logo=reactrouter&logoColor=white"> <img src="https://img.shields.io/badge/react-61DAFB?style=for-the-badge&logo=react&logoColor=black"> <img src="https://img.shields.io/badge/reacthottoast-61DAFB?style=for-the-badge&logo=react&logoColor=black"> <img src="https://img.shields.io/badge/reacticons-61DAFB?style=for-the-badge&logo=react&logoColor=black"> <img src="https://img.shields.io/badge/reactcalendar-61DAFB?style=for-the-badge&logo=react&logoColor=black"> <img src="https://img.shields.io/badge/reacthelmetasync-61DAFB?style=for-the-badge&logo=react&logoColor=black"> <img src="https://img.shields.io/badge/swiper-6332F6?style=for-the-badge&logo=swiper&logoColor=white"> <img src="https://img.shields.io/badge/flowbite-141FAF?style=for-the-badge&logo=&logoColor=black"> <img src="https://img.shields.io/badge/zustand-572A3D?style=for-the-badge&logo=&logoColor=black"> <img src="https://img.shields.io/badge/pocketbase-000000?style=for-the-badge&logo=pocketbase&logoColor=white"> <img src="https://img.shields.io/badge/netlify-00C7B7?style=for-the-badge&logo=netlify&logoColor=white">
+<img src="https://img.shields.io/badge/javascript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black%22%3E"> <img src="https://img.shields.io/badge/react-61DAFB?style=for-the-badge&logo=react&logoColor=black"> <img src="https://img.shields.io/badge/reactquery-FF4154?style=for-the-badge&logo=reactquery&logoColor=white"> <img src="https://img.shields.io/badge/reactrouter-CA4245?style=for-the-badge&logo=reactrouter&logoColor=white"> <img src="https://img.shields.io/badge/zustand-572A3D?style=for-the-badge&logo=&logoColor=black"> <img src="https://img.shields.io/badge/swiper-6332F6?style=for-the-badge&logo=swiper&logoColor=white"> <img src="https://img.shields.io/badge/tailwindcss-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white"> <img src="https://img.shields.io/badge/flowbite-141FAF?style=for-the-badge&logo=&logoColor=black">
 
+## 🔧 Tools
 
+<img src="https://img.shields.io/badge/pnpm-F69220?style=for-the-badge&logo=pnpm&logoColor=white"> <img src="https://img.shields.io/badge/vite-646CFF?style=for-the-badge&logo=vite&logoColor=white">  <img src="https://img.shields.io/badge/netlify-00C7B7?style=for-the-badge&logo=netlify&logoColor=white"> <img src="https://img.shields.io/badge/pocketbase-000000?style=for-the-badge&logo=pocketbase&logoColor=white">
 
-## 🎨 Tools
+## 🎨 Cooperation
 
-<img src="https://img.shields.io/badge/discord-5865F2?style=for-the-badge&logo=discord&logoColor=white"> <img src="https://img.shields.io/badge/kakaotalk-FFCD00?style=for-the-badge&logo=kakaotalk&logoColor=white"> <img src="https://img.shields.io/badge/github-181717?style=for-the-badge&logo=github&logoColor=white"> <img src="https://img.shields.io/badge/visualstudiocode-007ACC?style=for-the-badge&logo=visualstudiocode&logoColor=white"> <img src="https://img.shields.io/badge/figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white"> <img src="https://img.shields.io/badge/notion-000000?style=for-the-badge&logo=notion&logoColor=white">
+<img src="https://img.shields.io/badge/discord-5865F2?style=for-the-badge&logo=discord&logoColor=white"> <img src="https://img.shields.io/badge/figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white"> <img src="https://img.shields.io/badge/notion-000000?style=for-the-badge&logo=notion&logoColor=white">
 
 
 ## 👀 Preview
@@ -86,7 +81,7 @@ Page | Preview | Description
 에러페이지 | <img src="./readme/notFound.PNG" width="175" height="310"> | 이전페이지로 이동
 
 
-## 📚 DB Collection(Pocket Host)
+## 📚 DB Collection (Pocket Host)
 
 name | fields
 ----- | -----
