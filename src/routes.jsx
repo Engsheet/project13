@@ -1,10 +1,10 @@
 import { lazy } from "react";
 import { createBrowserRouter } from "react-router-dom";
 import { pb } from "@/api/pocketbase";
+import { Suspense } from "react";
+import Spinner from "./components/Spinner";
 
-import ReservationWrite from "./pages/ReservationWrite";
-
-// const ReservationWrite = lazy(() => import("@p/ReservationWrite"));
+const ReservationWrite = lazy(() => import("@p/ReservationWrite"));
 const RootLayout = lazy(() => import("@l/RootLayout"));
 const UserReviewList = lazy(() => import("@p/UserReviewList"));
 const UpdateUserData = lazy(() => import("@p/UpdateUserData"));
@@ -36,14 +36,14 @@ const routerConfig = isValidUser
           { path: "favorite", element: <Favorites /> },
         ],
       },
-      { path: "update-user-data", element: <UpdateUserData /> },
-      { path: "place/:placeId/:recordId", element: <Place /> },
-      { path: "user-review/:userId", element: <UserReview /> },
-      { path: "user-review-list/:userId", element: <UserReviewList /> },
-      { path: "region", element: <Region /> },
-      { path: "review-write", element: <ReviewWrite /> },
-      { path: "reservation-write", element: <ReservationWrite /> },
-      { path: "follow", element: <Follow /> },
+      { path: "update-user-data", element: <Suspense fallback={<Spinner />}><UpdateUserData /></Suspense> },
+      { path: "place/:placeId/:recordId", element: <Suspense fallback={<Spinner />}><Place /></Suspense> },
+      { path: "user-review/:userId", element: <Suspense fallback={<Spinner />}><UserReview /></Suspense> },
+      { path: "user-review-list/:userId", element: <Suspense fallback={<Spinner />}><UserReviewList /></Suspense> },
+      { path: "region", element: <Suspense fallback={<Spinner />}><Region /></Suspense> },
+      { path: "review-write", element: <Suspense fallback={<Spinner />}><ReviewWrite /></Suspense> },
+      { path: "reservation-write", element: <Suspense fallback={<Spinner />}><ReservationWrite /></Suspense> },
+      { path: "follow", element: <Suspense fallback={<Spinner />}><Follow /></Suspense> },
     ]
   : [
       {
