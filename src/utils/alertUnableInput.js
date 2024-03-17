@@ -9,7 +9,7 @@ export async function isUsed(createdData) {
   const userNames = fieldData.map((item) => item.username);
 
   if (nickNames.includes(createdData.nickname)) {
-    alertMessage(`이미 사용중인 별명이 있습니다.`);
+    alertMessage(`이미 사용중인 닉네임이 있습니다.`);
     return true;
   }
   if (emails.includes(createdData.email)) {

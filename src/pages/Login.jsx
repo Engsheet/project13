@@ -10,6 +10,8 @@ import SignInput from "@c/SignInUp/SignInput";
 import SignLogo from "@c/SignInUp/SignLogo";
 import SignTitle from "@c/SignInUp/SignTitle";
 import MetaData from "@c/MetaData";
+import SignLayout from "@/layout/SignLayout";
+import NavigateButton from "@/components/SignInUp/navigateButton";
 
 function Login() {
   const navigate = useNavigate();
@@ -48,25 +50,54 @@ function Login() {
   return (
     <SignContents>
       <MetaData props={metaData} />
-      <SignLogo />
-      <SignTitle value="로그인" />
+      <SignLayout>
+        <div>
+          <SignLogo />
+          <p className="mb-4 text-sm font-light leading-7 sm:text-base sm:leading-7 ">
+            마음에 드는 식당이 있나요?
+            <br />
+            <span className="font-semibold underline hover:text-primary hover:decoration-primary">Best Place</span>로
+            예약하고 저장하세요!
+          </p>
+        </div>
 
-      <SignForm>
-        <SignInput labelValue="아이디" ariaText="아이디 입력창" placeHolder="아이디를 입력하세요" inputValue={setId} />
+        <div className="flex w-full grow flex-col gap-1 sm:gap-3">
+          <SignForm>
+            <SignInput
+              labelValue="아이디"
+              ariaText="아이디 입력창"
+              placeHolder="아이디를 입력하세요"
+              inputValue={setId}
+            />
+            <SignInput
+              labelValue="비밀번호"
+              ariaText="비밀번호 입력창"
+              placeHolder="비밀번호를 입력하세요"
+              inputValue={setPw}
+              type="password"
+            />
+          </SignForm>
 
-        <SignInput
-          labelValue="비밀번호"
-          ariaText="비밀번호 입력창"
-          placeHolder="비밀번호를 입력하세요"
-          inputValue={setPw}
-          type="password"
-        />
-      </SignForm>
+          <div className="mt-4">
+            <p className="text-xs text-gray-600">아직 Best Place 회원이 아니신가요?</p>
+            <NavigateButton handleEvent={() => navigate("/Register")} value="회원가입" />
+          </div>
 
-      <div className="flex w-full max-w-3xl flex-col gap-2">
-        <SignButton value="로그인" handleEvent={() => handleLogin()} bgColor="bg-white" textColor="text-black" />
-        <SignButton value="회원가입" handleEvent={() => navigate("/Register")} />
-      </div>
+          <p className="flex flex-col text-right italic text-gray-600 text-opacity-60">
+            <span className="text-sm">Test Account</span>
+            <span className="mt-1 text-xs">
+              ID : best1234
+              <br />
+              PW : best1234
+            </span>
+          </p>
+        </div>
+
+        <div className="flex items-center justify-end gap-2">
+          <SignTitle value="로그인" />
+          <SignButton handleEvent={() => handleLogin()} ariaLabel="로그인" />
+        </div>
+      </SignLayout>
     </SignContents>
   );
 }

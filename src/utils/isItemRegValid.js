@@ -55,7 +55,7 @@ export function alertReg(key) {
       alertMessage("아이디는 소문자/대문자/숫자로 이루어진 4~20자리 문자여야 합니다");
       break;
     case key === "nickname":
-      alertMessage("별명은 특수문자 제외 2~10자리 문자입니다.");
+      alertMessage("닉네임은 특수문자 제외 2~10자리 문자입니다.");
       break;
     case key === "email":
       alertMessage("사용가능한 이메일 양식이 아닙니다");

@@ -1,21 +1,22 @@
 import { func, string } from "prop-types";
+import { PiArrowBendDownRightLight } from "react-icons/pi";
 
-function SignButton({ value, handleEvent, bgColor = "bg-primary", textColor = "text-white" }) {
+function SignButton({ ariaLabel, handleEvent }) {
   return (
     <button
-      className={`${textColor} ${bgColor} w-full rounded font-bold text-xl border-2 py-4`}
       type="button"
+      className="flex aspect-square w-11 items-center justify-center rounded-full bg-primary text-xl hover:bg-secondary focus:bg-secondary sm:w-[52px] sm:text-2xl"
       onClick={handleEvent}
+      aria-label={ariaLabel}
     >
-      {value}
+      <PiArrowBendDownRightLight />
     </button>
   );
 }
+
 SignButton.propTypes = {
-  value: string,
   handleEvent: func,
-  bgColor: string,
-  textColor: string,
+  ariaLabel: string,
 };
 
 export default SignButton;

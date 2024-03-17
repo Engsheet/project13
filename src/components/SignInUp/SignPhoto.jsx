@@ -3,7 +3,7 @@ import { useState, useRef } from "react";
 import { pb } from "@/api/pocketbase";
 import { getPbImageURL } from "./../../utils/getPbImageURL";
 
-function SignInput({
+function SignPhoto({
   labelValue,
   ariaText,
   placeHolder,
@@ -60,7 +60,7 @@ function SignInput({
     </>
   );
 }
-SignInput.propTypes = {
+SignPhoto.propTypes = {
   labelValue: string,
   ariaText: string,
   placeHolder: string,
@@ -70,4 +70,4 @@ SignInput.propTypes = {
   placeHolderColor: string,
 };
 
-export default SignInput;
+export default SignPhoto;

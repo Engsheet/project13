@@ -1,4 +1,4 @@
-import { PiArrowLineUpBold } from "react-icons/pi";
+import { PiArrowElbowDownRightBold } from "react-icons/pi";
 
 function ScrollTopButton() {
   const handleTop = () => {
@@ -12,11 +12,11 @@ function ScrollTopButton() {
   return (
     <button
       type="button"
-      className="flex aspect-square w-11 items-center justify-center rounded-full focus:bg-secondary hover:bg-secondary bg-primary text-xl sm:w-[52px] sm:text-2xl"
+      className="flex aspect-square w-11 items-center justify-center rounded-full bg-primary text-xl hover:bg-secondary focus:bg-secondary sm:w-[52px] sm:text-2xl"
       onClick={handleTop}
       aria-label="맨위로"
     >
-      <PiArrowLineUpBold />
+      <PiArrowElbowDownRightBold />
     </button>
   );
 }

@@ -6,9 +6,6 @@ function SignInput({
   ariaText,
   placeHolder,
   inputValue,
-  bgColor = "bg-primary",
-  textColor = "text-white",
-  placeHolderColor = "placeholder-white",
   type = "text",
 }) {
   const [inputChange, setInputChange] = useState("");
@@ -19,13 +16,13 @@ function SignInput({
   };
 
   return (
-    <div className="">
-      <label className="" htmlFor="signInputId">
+    <div className="text-sm sm:text-base">
+      <label className="pl-1 font-bold text-secondary" htmlFor="signInputId">
         {labelValue}
       </label>
       <input
         id="signInputId"
-        className={`${textColor} ${bgColor} ${placeHolderColor} my-2 w-full rounded border px-7 py-4 text-base`}
+        className="w-full rounded border px-3 py-2 my-0.5 placeholder-transparent caret-secondary outline-none focus:border-primary sm:py-2"
         type={type}
         aria-label={ariaText}
         placeholder={placeHolder}

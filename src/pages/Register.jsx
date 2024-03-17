@@ -11,6 +11,8 @@ import SignContents from "@c/SignInUp/SignContents";
 import SignLogo from "@c/SignInUp/SignLogo";
 import { useEffect } from "react";
 import MetaData from "@c/MetaData";
+import NavigateButton from "@/components/SignInUp/navigateButton";
+import SignLayout from "@/layout/SignLayout";
 
 function Register() {
   const navigate = useNavigate();
@@ -66,37 +68,53 @@ function Register() {
   return (
     <SignContents>
       <MetaData props={metaData} />
-      <SignLogo />
-      <SignTitle value="회원가입" />
-      <SignForm>
-        <SignInput labelValue="별명" ariaText="별명 입력창" placeHolder="별명을 입력하세요" inputValue={setNickname} />
-        <SignInput labelValue="아이디" ariaText="아이디 입력창" placeHolder="아이디를 입력하세요" inputValue={setId} />
-        <SignInput
-          labelValue="이메일"
-          ariaText="이메일 입력창"
-          placeHolder="이메일을 입력하세요"
-          inputValue={setEmail}
-        />
-        <SignInput
-          labelValue="비밀번호"
-          ariaText="비밀번호 입력창"
-          placeHolder="비밀번호를 입력하세요"
-          inputValue={setPw}
-          type="password"
-        />
-        <SignInput
-          labelValue="비밀번호 확인"
-          ariaText="비밀번호 재입력창"
-          placeHolder="비밀번호를 다시 입력하세요"
-          inputValue={setPwCheck}
-          type="password"
-        />
-      </SignForm>
+      <SignLayout>
+        <SignLogo />
+        <SignForm>
+          <SignInput
+            labelValue="닉네임"
+            ariaText="닉네임 입력창"
+            placeHolder="닉네임을 입력하세요"
+            inputValue={setNickname}
+          />
+          <SignInput
+            labelValue="아이디"
+            ariaText="아이디 입력창"
+            placeHolder="아이디를 입력하세요"
+            inputValue={setId}
+          />
+          <SignInput
+            labelValue="이메일"
+            ariaText="이메일 입력창"
+            placeHolder="이메일을 입력하세요"
+            inputValue={setEmail}
+          />
+          <SignInput
+            labelValue="비밀번호"
+            ariaText="비밀번호 입력창"
+            placeHolder="비밀번호를 입력하세요"
+            inputValue={setPw}
+            type="password"
+          />
+          <SignInput
+            labelValue="비밀번호 확인"
+            ariaText="비밀번호 재입력창"
+            placeHolder="비밀번호를 다시 입력하세요"
+            inputValue={setPwCheck}
+            type="password"
+          />
+        </SignForm>
 
-      <div className="flex w-full max-w-3xl flex-col gap-2">
-        <SignButton value="회원가입" handleEvent={() => handleRegister()} bgColor="bg-white" textColor="text-black" />
-        <SignButton value="로그인으로 돌아가기" handleEvent={() => navigate("/")} />
-      </div>
+        <div className="mt-4 grow">
+          <p className="text-xs text-gray-600">이미 Best Place 회원이신가요?</p>
+          <NavigateButton value="로그인으로 돌아가기" handleEvent={() => navigate("/")} />
+        </div>
+
+        <div className="flex items-center justify-end gap-2">
+          <SignTitle value="회원가입" />
+          <SignButton ariaLabel="회원가입" handleEvent={() => handleRegister()} />
+        </div>
+      </SignLayout>
     </SignContents>
   );
 }
