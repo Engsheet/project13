@@ -4,7 +4,13 @@
 
 html {
   @apply font-suit;
+  caret-color: transparent;
 }
+
+html input {
+  caret-color: initial;
+}
+
 .textInput::placeholder {
   font-size: 0.75rem /* 12px */;
   --tw-placeholder-opacity: 1;

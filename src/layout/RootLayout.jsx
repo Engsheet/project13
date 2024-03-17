@@ -4,7 +4,7 @@ import Nav from "./Nav";
 import Header from "./Header";
 import { Outlet } from "react-router-dom";
 import ScrollTopButton from "@/components/Button/ScrollTopButton";
-import ReviewWriteLink from "@/components/Link/ReviewWriteLink";
+import ReviewWriteLink from "@/components/Button/ReviewWriteLink";
 
 function RootLayout() {
   return (
@@ -15,7 +15,7 @@ function RootLayout() {
       </div>
       <Nav />
 
-      <main className="mx-auto max-w-3xl p-3">
+      <main className="mx-auto max-w-3xl p-3 px-6">
         <Outlet />
       </main>
 
