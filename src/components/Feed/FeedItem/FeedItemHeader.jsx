@@ -11,7 +11,7 @@ import { Link } from "react-router-dom";
 function FeedItemHeader({ item, isUser }) {
   const myId = pb.authStore.model.id;
   const [isFollow, setIsFollow] = useState(false);
-  const [isHoverUnfollowBtn, setIsHoverUnfollowBtn] = useState(false);
+  const [isHoverUnfollowBtn, setIsHoverFollowBtn] = useState(false);
   const { setFollowCount } = useFollowCountStore();
   const { data, refetch } = useFetchList("follow", { expand: "owner" });
   const { data: reviewData } = useFetchList("reviews", { filter: `writer='${item.writer}'` });
@@ -56,14 +56,6 @@ function FeedItemHeader({ item, isUser }) {
 
     refetch();
     refetchWriter();
-  };
-
-  const handleMouseOverUnfollowBtn = () => {
-    setIsHoverUnfollowBtn(true);
-  };
-
-  const handleMouseOutUnfollowBtn = () => {
-    setIsHoverUnfollowBtn(false);
   };
 
   return (
@@ -112,8 +104,8 @@ function FeedItemHeader({ item, isUser }) {
           className="h-8 rounded-md bg-secondary px-3 text-sm font-bold text-white hover:bg-gray-500 focus:bg-gray-500"
           id={item.expand.writer.id}
           onClick={debounce((e) => handleFollow(e), 500)}
-          onMouseOver={handleMouseOverUnfollowBtn}
-          onMouseOut={handleMouseOutUnfollowBtn}
+          onMouseOver={() => setIsHoverFollowBtn(true)}
+          onMouseOut={() => setIsHoverFollowBtn(false)}
         >
           {!isHoverUnfollowBtn ? "팔로잉" : "언팔로우"}
         </button>

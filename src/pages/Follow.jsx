@@ -53,7 +53,7 @@ function Follow() {
       <MetaData props={metaData} />
       <ScrollToTop />
       <Header />
-      <div className="mx-auto max-w-3xl">
+      <div className="mx-auto max-w-xl">
         <div className="my-4 flex items-center gap-2">
           {/* 창 닫기 */}
           <button type="button" onClick={handleClickPageBack} className="ml-1 px-1 text-4xl" aria-label="뒤로 가기">
@@ -66,8 +66,10 @@ function Follow() {
         <div className="flex rounded-md shadow-sm" role="group">
           <button
             type="button"
-            className={`text-md basis-1/2 border-b border-r border-gray-200 bg-white px-4 py-2 font-medium text-gray-900 ${
-              selectGroup === "following" ? "z-10 border-b-2 border-b-primary font-bold text-primary" : ""
+            className={`text-md basis-1/2 border-b-2 border-r border-gray-200 bg-white px-4 py-2 font-medium text-gray-900 ${
+              selectGroup === "following"
+                ? `block border-b-2 border-primary font-bold text-primary`
+                : `text-secondary hover:border-b-2 hover:border-secondary hover:font-bold focus:border-b-2 focus:border-secondary focus:font-bold`
             }`}
             onClick={handleChangeMenu}
           >
@@ -75,8 +77,10 @@ function Follow() {
           </button>
           <button
             type="button"
-            className={`text-md basis-1/2 border-b border-gray-200 bg-white px-4 py-2 font-medium text-gray-900 ${
-              selectGroup === "follower" ? "z-10 border-b-2 border-b-primary font-bold text-primary" : ""
+            className={`text-md basis-1/2 border-b-2 border-gray-200 bg-white px-4 py-2 font-medium text-gray-900 ${
+              selectGroup === "follower"
+                ? `block border-b-2 border-primary font-bold text-primary`
+                : `text-secondary hover:border-b-2 hover:border-secondary hover:font-bold focus:border-b-2 focus:border-secondary focus:font-bold`
             }`}
             onClick={handleChangeMenu}
           >
@@ -97,7 +101,7 @@ function Follow() {
                       <img
                         src={getPbImageURL(item, item.avatar)}
                         alt="작성자 프로필"
-                        className="h-14 w-14 rounded-full object-cover text-xs"
+                        className="h-10 w-10 rounded-full object-cover text-xs sm:h-14 sm:w-14"
                       />
                     ) : (
                       <IoPersonCircleSharp className="h-14 w-14 text-gray-100" />
@@ -105,7 +109,7 @@ function Follow() {
                   </dd>
                   <dt className="sr-only">유저 닉네임</dt>
                   <dd>
-                    <p>{item.nickname}</p>
+                    <p className="text-sm sm:text-base overflow-hidden">{item.nickname}</p>
                   </dd>
                 </dl>
                 <FollowButton
@@ -129,6 +133,7 @@ function Follow() {
 
 function FollowButton({ myId, item, data, refetch, myData, followingId }) {
   const [isFollow, setIsFollow] = useState(false);
+  const [isHoverFollowBtn, setIsHoverFollowBtn] = useState(false);
 
   useEffect(() => {
     const followingList = myData?.expand.followings?.map((el) => el.id) || [];
@@ -166,15 +171,17 @@ function FollowButton({ myId, item, data, refetch, myData, followingId }) {
     <>
       {isFollow ? (
         <button
-          className="h-8 rounded-md bg-gray-100 px-3 text-sm text-gray-500"
+          className="h-8 rounded-md bg-secondary px-3 text-sm font-bold text-white hover:bg-gray-500 focus:bg-gray-500"
           id={item.id}
           onClick={debounce((e) => handleFollow(e), 500)}
+          onMouseOver={() => setIsHoverFollowBtn(true)}
+          onMouseOut={() => setIsHoverFollowBtn(false)}
         >
-          팔로우 취소
+          {!isHoverFollowBtn ? "팔로잉" : "언팔로우"}
         </button>
       ) : (
         <button
-          className="h-8 rounded-md bg-secondary px-3 text-sm text-white"
+          className="h-8 rounded-md border border-secondary px-3 text-sm font-bold text-secondary hover:bg-secondary hover:text-white focus:bg-secondary focus:text-white"
           id={item.id}
           onClick={debounce((e) => handleFollow(e), 500)}
         >
