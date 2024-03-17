@@ -12,8 +12,8 @@ export const useFetchList = (collection, options) => {
   };
 
   const { data, isLoading, error, refetch } = useQuery({
-    queryKey: ["list", collection, options],
-    queryFn: fetchData,
+    queryKey: ["dataList", collection, options],
+    queryFn: () => fetchData(),
   });
 
   if (error) console.error("useQuery-" + error);

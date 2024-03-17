@@ -1,18 +1,19 @@
 import { BsChevronDown, BsChevronUp } from "react-icons/bs";
 import { array, object } from "prop-types";
-import { useFetchVisitData } from "@/hooks/useReservationList";
 import { useState } from "react";
 import { MdOutlineCheck } from "react-icons/md";
 
 //@ 예약 횟수 컴포넌트
 function ReservationCount({ userInfo, visitedList }) {
   const [onFocus, setOnFocus] = useState(false);
-  const { data: visitData } = useFetchVisitData();
   const [isSeeMore, setIsSeeMore] = useState(false);
 
-  if (!visitData) return;
-
-  let renderList = !isSeeMore ? visitData?.slice(0, 3) : visitData?.slice(0, 9);
+  let visitCount = visitedList.reduce((acc, cur) => {
+    acc[cur.expand.place.title] = (acc[cur.expand.place.title] || 0) + 1;
+    return acc;
+  }, {});
+  let visitData = Object.entries(visitCount).sort((a, b) => b[1] - a[1]);
+  let renderList = !isSeeMore ? visitData.slice(0, 3) : visitData.slice(0, 8);
   let firstCount = renderList.length !== 0 ? renderList[0][1] : 0;
 
   function handleClickButton() {
@@ -20,19 +21,19 @@ function ReservationCount({ userInfo, visitedList }) {
   }
 
   return (
-    <div className="my-8 border-b border-dashed border-gray-500/50 pb-8">
+    <div className="mt-8 border-b border-dashed border-gray-500/50 pb-8">
       <h3 className="mb-6 text-lg font-bold">
         <MdOutlineCheck className="mr-2 inline text-3xl" />
         <p className="inline align-bottom">
           <span className="text-secondary decoration-secondary hover:underline">{userInfo.nickname}</span>
           &nbsp;님은 LION PLACE로&nbsp;
-          <span className="text-secondary decoration-secondary hover:underline">{visitedList?.length}회</span>
+          <span className="text-secondary decoration-secondary hover:underline">{visitedList.length}회</span>
           &nbsp;예약하고 방문했어요
         </p>
       </h3>
 
       <ol>
-        {renderList?.map((item, index) => (
+        {renderList.map((item, index) => (
           <li key={index} className="mb-6">
             <div className="flex items-center justify-between">
               <span className="mr-2 w-6 items-center rounded-lg border-2 bg-black text-center text-sm font-bold text-white">
@@ -54,7 +55,7 @@ function ReservationCount({ userInfo, visitedList }) {
       <label
         htmlFor="seeMoreButton"
         className={`mx-auto flex cursor-pointer items-center justify-center gap-1 ${
-          renderList?.length < 3 ? "hidden" : ""
+          renderList.length < 3 ? "hidden" : ""
         }`}
       >
         <input

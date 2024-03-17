@@ -1,25 +1,30 @@
 import { pb } from "@/api/pocketbase";
 import NoResult from "@/components/Feed/NoResult";
-import MetaData from "@c/MetaData";
 import ReservationCount from "@/components/ReservationList/ReservationCount";
 import ReservationList from "@/components/ReservationList/ReservationList";
 import ReservedList from "@/components/ReservationList/ReservedList";
 import ScrollToTop from "@/components/ScrollTop";
 import Spinner from "@/components/Spinner";
-import useReservationList from "@/hooks/useReservationList.js";
+import { useFetchList } from "@/hooks/useFetchList";
+import MetaData from "@c/MetaData";
 
 //@ 예약 페이지 컴포넌트
 function Reservation() {
   let userInfo = pb.authStore.model;
-  const { data: reservation, isLoading } = useReservationList();
+  const { data: reservation, isLoading } = useFetchList("reservation", {
+    filter: `booker = '${userInfo.id}'`,
+    expand: "place",
+    sort: "-date",
+  });
+
+  if (isLoading) return <Spinner />;
+
   let reservedList = [];
   let progressList = [];
   let visitedList = [];
   let canceledList = [];
 
-  if (isLoading) return <Spinner />;
-
-  reservation?.forEach((item) => {
+  reservation.forEach((item) => {
     !item.canceled && !item.visited
       ? (reservedList = [...reservedList, item])
       : (progressList = [...progressList, item]);
@@ -28,9 +33,10 @@ function Reservation() {
   progressList.forEach((item) => {
     !item.canceled ? (visitedList = [...visitedList, item]) : (canceledList = [...canceledList, item]);
   });
+
   const metaData = {
     title: "Best Place - 방문/예약",
-    description: "작성한 예약을 리뷰로 바꿔보자",
+    description: "내 방문/예약 정보 확인하기",
     keywords: ["맛집", "리뷰", "커뮤니티"],
     image: "/logo.svg",
   };
@@ -38,6 +44,7 @@ function Reservation() {
   return reservation.length !== 0 ? (
     <div>
       <MetaData props={metaData} />
+      <ScrollToTop />
       {/* 현재 예약중 리스트 */}
       <ReservedList userInfo={userInfo} reservedList={reservedList.reverse()} />
 

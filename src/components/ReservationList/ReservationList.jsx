@@ -1,5 +1,5 @@
 import { useInfiniteList, useIntersect } from "@/hooks";
-import { useFetchWriteReviews } from "@/hooks/useFetchWriteReview";
+import { useFetchList } from "@/hooks/useFetchList";
 import { dateFormat, timeFormat } from "@/utils";
 import { Dropdown } from "flowbite-react";
 import { array, object } from "prop-types";
@@ -13,12 +13,13 @@ import { Link } from "react-router-dom";
 function ReservationList({ userInfo, visitedList, canceledList }) {
   let renderList;
   let userId = userInfo.id;
-  const { data: writeReview } = useFetchWriteReviews("reviews", {
+  const [filter, setFilter] = useState("all");
+  const { data: writeReview } = useFetchList("reviews", {
     filter: `writer = '${userId}'`,
     fields: "reservation",
   });
-  const [filter, setFilter] = useState("all");
-
+  let reservationId = writeReview?.map((i) => i.reservation);
+  
   const {
     data: infiniteRenderList,
     isLoading,
@@ -28,7 +29,7 @@ function ReservationList({ userInfo, visitedList, canceledList }) {
     filter: `booker="${userInfo.id}" && (visited=true || canceled=true)`,
     sort: "-date",
   });
-
+  
   let infiniteList = infiniteRenderList?.flatMap((list) => list.items).filter((i) => i.canceled || i.visited) || null;
 
   switch (filter) {
@@ -51,10 +52,10 @@ function ReservationList({ userInfo, visitedList, canceledList }) {
       }
     },
     { threshold: 1 }
-  );
-
-  function onChangeRadio(e) {
-    setFilter(e.target.value);
+    );
+    
+    function onChangeRadio(e) {
+      setFilter(e.target.value);
   }
 
   function ReservationVisitIcon() {
@@ -64,7 +65,7 @@ function ReservationList({ userInfo, visitedList, canceledList }) {
       </div>
     );
   }
-
+  
   // 예약취소 아이콘
   function ReservationCancelIcon() {
     return (
@@ -76,13 +77,13 @@ function ReservationList({ userInfo, visitedList, canceledList }) {
 
   return (
     <>
-      <div className="flex gap-2">
+      <div className="mt-8 flex gap-2">
         <label
           htmlFor="filterAllButton"
-          className={`cursor-pointer rounded-xl border border-gray-200/50 px-4 py-2 text-sm font-semibold ${
+          className={`rounded-xl border border-gray-200/50 px-4 py-2 text-sm font-semibold shadow-md ${
             filter === "all"
-              ? `border-0 bg-primary text-white shadow-md`
-              : `border text-gray-600 shadow-md hover:border-primary`
+              ? `cursor-pointer border-0 bg-primary text-white`
+              : `cursor-pointer text-gray-600 hover:border-primary`
           }`}
         >
           <input
@@ -97,10 +98,12 @@ function ReservationList({ userInfo, visitedList, canceledList }) {
         </label>
         <label
           htmlFor="filterVisitButton"
-          className={`cursor-pointer rounded-xl border border-gray-200/50 px-4 py-2 text-sm font-semibold ${
-            filter === "visit"
-              ? `border-0 bg-primary text-white shadow-md`
-              : `border text-gray-600 shadow-md hover:border-primary`
+          className={`rounded-xl border border-gray-200/50 px-4 py-2 text-sm font-semibold shadow-md ${
+            !visitedList.length
+              ? `cursor-not-allowed bg-gray-100 text-gray-600 text-opacity-60`
+              : filter === "visit"
+              ? `cursor-pointer border-0 bg-primary text-white`
+              : `cursor-pointer text-gray-600 hover:border-primary`
           }`}
         >
           <input
@@ -117,10 +120,12 @@ function ReservationList({ userInfo, visitedList, canceledList }) {
         </label>
         <label
           htmlFor="filterCancelButton"
-          className={`cursor-pointer rounded-xl border border-gray-200/50 px-4 py-2 text-sm font-semibold ${
-            filter === "cancel"
-              ? `border-0 bg-primary text-white shadow-md`
-              : `border text-gray-600 shadow-md hover:border-primary`
+          className={`rounded-xl border border-gray-200/50 px-4 py-2 text-sm font-semibold shadow-md ${
+            !canceledList.length
+              ? `cursor-not-allowed bg-gray-100 text-gray-600 text-opacity-60`
+              : filter === "cancel"
+              ? `cursor-pointer border-0 bg-primary text-white`
+              : `cursor-pointer text-gray-600 hover:border-primary`
           }`}
         >
           <input
@@ -130,6 +135,7 @@ function ReservationList({ userInfo, visitedList, canceledList }) {
             value="cancel"
             onChange={onChangeRadio}
             className="sr-only"
+            disabled={!canceledList.length}
           />
           <p>
             예약 취소 <span className="pl-0.5">{canceledList.length}</span>
@@ -151,7 +157,7 @@ function ReservationList({ userInfo, visitedList, canceledList }) {
               <div className="mr-1 flex gap-2 text-lg">
                 <Dropdown inline arrowIcon={null} label={<MdMoreVert />} style={null}>
                   <Link to={"/reservation-write"} state={{ userInfo, item }}>
-                    <p className="hover:text-primaryLight mx-3 my-1 bg-transparent text-center text-sm font-semibold">
+                    <p className="mx-3 my-1 bg-transparent text-center text-sm font-semibold hover:text-primaryLight">
                       + 재예약
                     </p>
                   </Link>
@@ -167,7 +173,7 @@ function ReservationList({ userInfo, visitedList, canceledList }) {
                 <Link to={"/review-write"} state={{ userId, item }}>
                   <p
                     className={
-                      !item.canceled && !writeReview?.includes(item.id)
+                      !item.canceled && !reservationId?.includes(item.id)
                         ? "group mr-2 flex items-center text-sm font-semibold text-gray-700"
                         : "hidden"
                     }
@@ -177,7 +183,7 @@ function ReservationList({ userInfo, visitedList, canceledList }) {
                 </Link>
                 <p
                   className={
-                    !item.canceled && writeReview?.includes(item.id)
+                    !item.canceled && reservationId?.includes(item.id)
                       ? "mr-2 flex items-center text-sm font-medium text-gray-700"
                       : "hidden"
                   }

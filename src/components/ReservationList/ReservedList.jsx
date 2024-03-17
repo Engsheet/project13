@@ -6,6 +6,7 @@ import { BsCalendarWeek } from "react-icons/bs";
 import { MdMoreVert } from "react-icons/md";
 import PopUpModal from "../PopUpModal";
 import { useState } from "react";
+import NoResult from "../Feed/NoResult";
 
 //@ 현재 예약중 리스트
 function ReservedList({ reservedList, userInfo }) {
@@ -54,14 +55,14 @@ function ReservedList({ reservedList, userInfo }) {
                   <Dropdown inline arrowIcon={null} label={<MdMoreVert />}>
                     <button
                       type="button"
-                      className="hover:text-primaryLight mx-3 block border-b border-gray-500 bg-transparent py-1 text-center text-sm font-semibold"
+                      className="mx-3 block border-b border-gray-500 bg-transparent py-1 text-center text-sm font-semibold hover:text-primaryLight"
                       onClick={handleClickVisitBtn}
                     >
                       방문 확인
                     </button>
                     <button
                       type="button"
-                      className="hover:text-primaryLight mx-3 block bg-transparent py-1 text-center text-sm font-semibold"
+                      className="mx-3 block bg-transparent py-1 text-center text-sm font-semibold hover:text-primaryLight"
                       onClick={handleClickCancelBtn}
                     >
                       예약 취소
@@ -81,6 +82,11 @@ function ReservedList({ reservedList, userInfo }) {
         <h3 className="mb-4 mt-2 text-lg font-bold">
           <BsCalendarWeek className="mr-2 inline align-bottom text-3xl" />
           <span className="mx-0.5 text-secondary">{userInfo.nickname}</span>님이 현재 예약한 장소는 없어요!
+          <NoResult
+            title={"회원님의 예약 정보가 없어요."}
+              contents={"원하는 장소를 예약하고, 예약 정보를 관리해보세요!"}
+              style="pt-4 pb-0"
+          />
         </h3>
       )}
     </div>
