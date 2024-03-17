@@ -71,35 +71,22 @@ function Register() {
       <SignLayout>
         <SignLogo />
         <SignForm>
+          <SignInput labelValue="아이디" placeHolder="4~20자리 영문/숫자로 입력해주세요." inputValue={setId} />
           <SignInput
             labelValue="닉네임"
-            ariaText="닉네임 입력창"
-            placeHolder="닉네임을 입력하세요"
+            placeHolder="2~10자리 문자로 입력해주세요."
             inputValue={setNickname}
           />
-          <SignInput
-            labelValue="아이디"
-            ariaText="아이디 입력창"
-            placeHolder="아이디를 입력하세요"
-            inputValue={setId}
-          />
-          <SignInput
-            labelValue="이메일"
-            ariaText="이메일 입력창"
-            placeHolder="이메일을 입력하세요"
-            inputValue={setEmail}
-          />
+          <SignInput labelValue="이메일" placeHolder="이메일을 입력하세요." inputValue={setEmail} />
           <SignInput
             labelValue="비밀번호"
-            ariaText="비밀번호 입력창"
-            placeHolder="비밀번호를 입력하세요"
+            placeHolder="숫자/영문/특문 8~16글자로 입력해주세요."
             inputValue={setPw}
             type="password"
           />
           <SignInput
             labelValue="비밀번호 확인"
-            ariaText="비밀번호 재입력창"
-            placeHolder="비밀번호를 다시 입력하세요"
+            placeHolder="비밀번호를 다시 입력해주세요."
             inputValue={setPwCheck}
             type="password"
           />

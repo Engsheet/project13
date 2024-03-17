@@ -3,7 +3,6 @@ import { useState } from "react";
 
 function SignInput({
   labelValue,
-  ariaText,
   placeHolder,
   inputValue,
   type = "text",
@@ -17,14 +16,13 @@ function SignInput({
 
   return (
     <div className="text-sm sm:text-base">
-      <label className="pl-1 font-bold text-secondary" htmlFor="signInputId">
+      <label className="pl-1 font-bold text-secondary" htmlFor={labelValue}>
         {labelValue}
       </label>
       <input
-        id="signInputId"
-        className="w-full rounded border px-3 py-2 my-0.5 placeholder-transparent caret-secondary outline-none focus:border-primary sm:py-2"
+        id={labelValue}
+        className="textInput my-0.5 w-full rounded border px-3 py-2 caret-secondary outline-none focus:border-primary sm:py-2"
         type={type}
-        aria-label={ariaText}
         placeholder={placeHolder}
         value={inputChange}
         onChange={handleChangeInput}
@@ -34,11 +32,8 @@ function SignInput({
 }
 SignInput.propTypes = {
   labelValue: string,
-  ariaText: string,
   placeHolder: string,
   inputValue: func,
-  bgColor: string,
-  textColor: string,
   placeHolderColor: string,
   type: string,
 };

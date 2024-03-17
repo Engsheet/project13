@@ -19,7 +19,7 @@ function Profile() {
         <dl className="relative flex items-center justify-center gap-x-6 gap-y-2">
           <div>
             <dt className="sr-only">내 프로필 사진</dt>
-            <dd className="h-20 w-20 rounded-full bg-white p-0.5 shadow-[0_1px_6px_rgba(0,0,0,0.1)] hover:bg-secondary sm:h-24 sm:w-24">
+            <dd className="h-20 w-20 rounded-full bg-white p-0.5 shadow-[0_1px_6px_rgba(0,0,0,0.3)] hover:bg-primary sm:h-24 sm:w-24">
               <Link to={"/update-user-data"}>
                 {userInfo.avatar ? (
                   <img
@@ -36,8 +36,8 @@ function Profile() {
 
           <div className="flex flex-col gap-1">
             <dt className="sr-only">내 닉네임</dt>
-            <dd className="w-fit pb-2">
-              <Link to={"/update-user-data"} className="group mx-4 flex items-center gap-1 text-2xl font-bold">
+            <dd className="w-fit pb-0.5 sm:pb-2">
+              <Link to={"/update-user-data"} className="group mx-4 flex items-center gap-1 sm:text-2xl text-xl font-bold">
                 <span>{userInfo.nickname}</span>
                 <BsPencilFill
                   aria-label="프로필 수정"

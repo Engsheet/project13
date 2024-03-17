@@ -63,19 +63,8 @@ function Login() {
 
         <div className="flex w-full grow flex-col gap-1 sm:gap-3">
           <SignForm>
-            <SignInput
-              labelValue="아이디"
-              ariaText="아이디 입력창"
-              placeHolder="아이디를 입력하세요"
-              inputValue={setId}
-            />
-            <SignInput
-              labelValue="비밀번호"
-              ariaText="비밀번호 입력창"
-              placeHolder="비밀번호를 입력하세요"
-              inputValue={setPw}
-              type="password"
-            />
+            <SignInput labelValue="아이디" placeHolder="아이디를 입력하세요." inputValue={setId} />
+            <SignInput labelValue="비밀번호" placeHolder="비밀번호를 입력하세요." inputValue={setPw} type="password" />
           </SignForm>
 
           <div className="mt-4">
@@ -95,7 +84,7 @@ function Login() {
 
         <div className="flex items-center justify-end gap-2">
           <SignTitle value="로그인" />
-          <SignButton handleEvent={() => handleLogin()} ariaLabel="로그인" />
+          <SignButton ariaLabel="로그인" handleEvent={() => handleLogin()} />
         </div>
       </SignLayout>
     </SignContents>

@@ -5,6 +5,16 @@
 html {
   @apply font-suit;
 }
+.textInput::placeholder {
+  font-size: 0.75rem /* 12px */;
+  --tw-placeholder-opacity: 1;
+  color: rgb(107 114 128 / var(--tw-placeholder-opacity))
+}
+@media (min-width: 640px) {
+  .textInput::placeholder {
+    font-size: 0.875rem /* 16px */;
+  }
+}
 
 .photo-swiper {
   width: clamp(280px, 90%, 550px);
