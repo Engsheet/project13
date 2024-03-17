@@ -10,11 +10,12 @@ import { useFetchRecord } from "@/hooks/useFetchRecord";
 import Footer from "@/layout/Footer";
 import Header from "@/layout/Header";
 import { useParams } from "react-router-dom";
-import { read } from "@/api/pocketbase";
 
 function Place() {
   const { recordId, placeId } = useParams();
-  const { data: record } = useFetchRecord(recordId);
+  const { data: record } = useFetchRecord("reviews", recordId, {
+    expand: "place,writer,reservation",
+  });
   const { data, isLoading, hasNextPage, fetchNextPage } = useInfiniteList("reviews", {
     filter: `place.id='${placeId}'`,
   });
@@ -37,7 +38,12 @@ function Place() {
   const metaData = {
     title: `Best Place - ${record.expand.place.title}`,
     description: `${record.expand.place.address}에 위치한 ${record.expand.place.category}, ${record.expand.place.title}`,
-    keywords: [`${record.expand.place.title}`, `${record.expand.place.category}`, `${record.expand.place.address}`, `${record.keywords}`],
+    keywords: [
+      `${record.expand.place.title}`,
+      `${record.expand.place.category}`,
+      `${record.expand.place.address}`,
+      `${record.keywords}`,
+    ],
     image: `${record.photos}`,
   };
   return (

@@ -4,19 +4,22 @@ import Kakaomap from "@/components/Kakaomap";
 import PopUpModal from "@/components/PopUpModal";
 import ScrollToTop from "@/components/ScrollTop";
 import Spinner from "@/components/Spinner";
-import { useUserInfo } from "@/hooks/useUserInfo";
 import { getPbImageURL } from "@/utils";
 import { useState } from "react";
 import { BsTrashFill } from "react-icons/bs";
 import MetaData from "@c//MetaData";
+import { useFetchRecord } from "@/hooks/useFetchRecord";
 
 function Favorites() {
   const myId = pb.authStore.model.id;
   const userFavorites = pb.authStore.model.favorites;
   const [openModal, setOpenModal] = useState(false);
   const [itemId, setItemId] = useState("");
-  const { data, refetch, isLoading } = useUserInfo(myId, "favorites");
-  const favorites = data?.expand?.favorites?.length && data?.expand.favorites;
+  const { data: userData, refetch, isLoading } = useFetchRecord("users", myId, { expand: "favorites" });
+
+  if (isLoading) return <Spinner />;
+
+  const favorites = userData?.expand?.favorites?.length && userData?.expand.favorites;
 
   const handleDelete = async () => {
     const favorites = userFavorites.filter((el) => el !== itemId);
@@ -31,8 +34,6 @@ function Favorites() {
     setOpenModal(false);
     refetch();
   };
-
-  if (isLoading) return <Spinner />;
 
   const metaData = {
     title: "Best Place - 저장",
@@ -55,11 +56,13 @@ function Favorites() {
       {favorites ? (
         <main>
           <h2 className="sr-only">저장 페이지</h2>
-          <h3 className="py-4 text-center text-xl font-extrabold"><span className="mr-2">🍴</span>내가 저장한 맛집</h3>
+          <h3 className="py-4 text-center text-xl font-extrabold">
+            <span className="mr-2">🍴</span>내가 저장한 맛집
+          </h3>
           <div id="map" className="my-2 h-96 w-full rounded-lg bg-gray-300">
             <Kakaomap items={favorites} />
           </div>
-          <ul className="mt-6 mb-10">
+          <ul className="mb-10 mt-6">
             {favorites?.map((item) => (
               <li key={crypto.randomUUID()} className="border-b border-gray-100 py-4">
                 <div className="flex justify-between">
