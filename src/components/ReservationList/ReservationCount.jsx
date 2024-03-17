@@ -19,10 +19,6 @@ function ReservationCount({ userInfo, visitedList }) {
     setIsSeeMore(!isSeeMore);
   }
 
-  function handleFocusButton() {
-    setOnFocus(!onFocus);
-  }
-
   return (
     <div className="my-8 border-b border-dashed border-gray-500/50 pb-8">
       <h3 className="mb-6 text-lg font-bold">
@@ -67,8 +63,8 @@ function ReservationCount({ userInfo, visitedList }) {
           onChange={handleClickButton}
           id="seeMoreButton"
           tabIndex={0}
-          onFocus={handleFocusButton}
-          onBlur={handleFocusButton}
+          onFocus={() => setOnFocus(true)}
+          onBlur={() => setOnFocus(false)}
         />
         <p
           className={`flex items-center rounded-md border-2 px-1.5 hover:font-bold ${

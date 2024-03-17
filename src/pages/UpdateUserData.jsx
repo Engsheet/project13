@@ -2,26 +2,26 @@ import { useState } from "react";
 import { pb, read, update } from "@/api/pocketbase";
 import { useNavigate } from "react-router-dom";
 import { isRegValid, alertReg, alertMessage } from "@u/index";
-import SignTitle from "@c/SignInUp/SignTitle";
 import SignInput from "@c/SignInUp/SignInput";
 import SignPhoto from "@c/SignInUp/SignPhoto";
 import SignButton from "@c/SignInUp/SignButton";
 import SignForm from "@c/SignInUp/SignForm";
 import Header from "@l/Header";
 import MetaData from "@c/MetaData";
+import { GoX } from "react-icons/go";
+import { Link } from "react-router-dom";
 
 function UpdateUserData() {
+  const userInfo = pb.authStore.model;
   const navigate = useNavigate();
 
-  const [avatar, setAvatar] = useState(pb.authStore.model.avatar);
-  const [nickname, setNickname] = useState(pb.authStore.model.nickname);
-  const [username, setUsername] = useState(pb.authStore.model.username);
-  const [email, setEmail] = useState(pb.authStore.model.email);
+  const [avatar, setAvatar] = useState(userInfo.avatar);
+  const [nickname, setNickname] = useState(userInfo.nickname);
+  const [email, setEmail] = useState(userInfo.email);
 
   const updateData = {
     avatar: avatar,
     nickname: nickname,
-    username: username,
     email: email,
   };
 
@@ -42,7 +42,7 @@ function UpdateUserData() {
 
   async function handleUserDataUpdate() {
     for (const [key, value] of Object.entries(updateData)) {
-      if (!(value === pb.authStore.model[key])) {
+      if (!(value === userInfo[key])) {
         if (await isUsed(key, value)) {
           alertMessage(`이미 사용중인 닉네임입니다.`);
           return;
@@ -55,7 +55,7 @@ function UpdateUserData() {
     }
 
     appendFormData();
-    await update("users", pb.authStore.model.id, formData);
+    await update("users", userInfo.id, formData);
     navigate("/");
   }
   const metaData = {
@@ -66,43 +66,36 @@ function UpdateUserData() {
   };
 
   return (
-    <div className="relative min-h-screen pb-28">
+    <div className="caret-transparent">
       <MetaData props={metaData} />
       <Header />
-      <main className="mx-auto max-w-3xl px-3 py-10">
-        <SignTitle value="프로필 설정" />
 
-        <SignForm>
-          <SignPhoto
-            labelValue=""
-            ariaText="새 프로필 사진 입력창"
-            placeHolder=""
-            inputValue={setAvatar}
-            bgColor="bg-white"
-            textColor="text-black"
-            placeHolderColor="placeholder-black"
-          />
-          <SignInput
-            labelValue="별명"
-            ariaText="별명 입력창"
-            placeHolder="새 별명을 입력하세요"
-            type="text"
-            inputValue={setNickname}
-            bgColor="bg-white"
-            textColor="text-black"
-            placeHolderColor="placeholder-gray-400"
-          />
-          <input type="text" className="hidden"></input>
-        </SignForm>
+      <main className="relative mx-auto max-w-3xl p-3">
+        <Link to="/" className="group absolute right-3.5 mr-1 inline" title="설정 닫기">
+          <GoX className="text-3xl hover:text-primary group-focus:text-primary" />
+        </Link>
 
-        <div className="flex gap-3 py-6">
-          <SignButton value="취소" handleEvent={() => navigate("/")} bgColor="bg-white" textColor="text-red-600" />
-          <SignButton
-            value="수정완료"
-            handleEvent={() => handleUserDataUpdate()}
-            bgColor="bg-primary"
-            textColor="text-white"
-          />
+        <div className="mx-auto max-w-sm">
+          <h2 className="mt-3 text-center text-2xl font-bold">프로필 수정</h2>
+          <SignForm>
+            <SignPhoto labelValue="프로필 사진 변경" ariaLabel="프로필 사진을 변경하세요." inputValue={setAvatar} />
+            <SignInput
+              labelValue="닉네임"
+              placeHolder={userInfo.nickname}
+              inputValue={setNickname}
+            />
+            <SignInput
+              labelValue="이메일"
+              placeHolder={userInfo.email}
+              inputValue={setEmail}
+            />
+            <input type="text" className="hidden"></input>
+          </SignForm>
+
+          <div className="mt-6 flex items-center justify-end gap-2">
+            <p className="text-lg font-bold">프로필 변경</p>
+            <SignButton ariaLabel="프로필 수정" handleEvent={() => handleUserDataUpdate()} />
+          </div>
         </div>
       </main>
     </div>
