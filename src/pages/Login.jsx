@@ -1,8 +1,7 @@
-import { read, setLogIn } from "@/api/pocketbase";
+import { setLogIn } from "@/api/pocketbase";
 import { alertMessage } from "@u/index";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-
 import SignButton from "@c/SignInUp/SignButton";
 import SignContents from "@c/SignInUp/SignContents";
 import SignForm from "@c/SignInUp/SignForm";

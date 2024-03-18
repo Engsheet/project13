@@ -3,9 +3,7 @@ import { RouterProvider } from "react-router-dom";
 import router from "@/routes";
 import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
 import { HelmetProvider } from "react-helmet-async";
-import { Suspense } from "react";
-import Spinner from "./components/Spinner";
-// import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 const queryClient = new QueryClient();
 
@@ -16,10 +14,9 @@ function App() {
       <HelmetProvider>
         <QueryClientProvider client={queryClient}>
           <div className="App">
-            <Suspense fallback={<Spinner />}>
-              <RouterProvider router={router} />
-            </Suspense>
+            <RouterProvider router={router} />
           </div>
+          {/* <ReactQueryDevtools initialIsOpen={false} /> */}
         </QueryClientProvider>
       </HelmetProvider>
     </>
