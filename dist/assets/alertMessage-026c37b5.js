@@ -1,0 +1,1 @@
+import{_ as o}from"./index-06c6c1f5.js";function i(a="확인되었습니다.",r="✔"){o(a,{duration:3e3,icon:r,style:{background:"#e0f2fe",color:"#000",borderRadius:"28px",padding:"12px"},ariaProps:{role:"alert","aria-live":"polite"}})}export{i as a};

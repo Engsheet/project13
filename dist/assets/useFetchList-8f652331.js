@@ -1,0 +1,1 @@
+import{p as n}from"./index-06c6c1f5.js";import{u as i}from"./useQuery-7f8ad36b.js";const f=(r,t)=>{const o=async()=>{try{return await n.collection(r).getFullList(t)}catch(a){console.error("tryCatch-"+a)}},{data:s,isLoading:c,error:e,refetch:u}=i({queryKey:["dataList",r,t],queryFn:()=>o()});return e&&console.error("useQuery-"+e),{data:s,isLoading:c,refetch:u}};export{f as u};

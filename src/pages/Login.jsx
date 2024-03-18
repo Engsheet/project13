@@ -1,16 +1,16 @@
 import { setLogIn } from "@/api/pocketbase";
-import { alertMessage } from "@u/index";
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import SignLayout from "@/layout/SignLayout";
+import MetaData from "@c/MetaData";
+import NavigateButton from "@c/SignInUp/NavigateButton";
 import SignButton from "@c/SignInUp/SignButton";
 import SignContents from "@c/SignInUp/SignContents";
 import SignForm from "@c/SignInUp/SignForm";
 import SignInput from "@c/SignInUp/SignInput";
 import SignLogo from "@c/SignInUp/SignLogo";
 import SignTitle from "@c/SignInUp/SignTitle";
-import MetaData from "@c/MetaData";
-import SignLayout from "@/layout/SignLayout";
-import NavigateButton from "@/components/SignInUp/navigateButton";
+import { alertMessage } from "@u/index";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
   const navigate = useNavigate();

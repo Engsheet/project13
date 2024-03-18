@@ -1,18 +1,18 @@
 import { create, setLogIn } from "@/api/pocketbase";
+import { alertMessage, alertUnableInput, isUsed } from "@u/index";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { alertMessage, alertUnableInput, isUsed } from "@u/index";
 
-import SignTitle from "@c/SignInUp/SignTitle";
-import SignInput from "@c/SignInUp/SignInput";
-import SignButton from "@c/SignInUp/SignButton";
-import SignForm from "@c/SignInUp/SignForm";
-import SignContents from "@c/SignInUp/SignContents";
-import SignLogo from "@c/SignInUp/SignLogo";
-import { useEffect } from "react";
 import MetaData from "@c/MetaData";
-import NavigateButton from "@/components/SignInUp/navigateButton";
-import SignLayout from "@/layout/SignLayout";
+import SignButton from "@c/SignInUp/SignButton";
+import SignContents from "@c/SignInUp/SignContents";
+import SignForm from "@c/SignInUp/SignForm";
+import SignInput from "@c/SignInUp/SignInput";
+import SignLogo from "@c/SignInUp/SignLogo";
+import SignTitle from "@c/SignInUp/SignTitle";
+import NavigateButton from "@c/SignInUp/NavigateButton";
+import SignLayout from "@l/SignLayout";
+import { useEffect } from "react";
 
 function Register() {
   const navigate = useNavigate();

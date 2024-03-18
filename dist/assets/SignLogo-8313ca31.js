@@ -1,0 +1,1 @@
+import{j as s}from"./index-06c6c1f5.js";function e(){return s.jsxs("div",{className:"mb-5 flex justify-start gap-2 sm:gap-4",children:[s.jsx("img",{className:"w-12 sm:w-16",src:"/logo.svg",alt:"로고 이미지"}),s.jsx("h1",{className:"self-center text-lg font-extrabold sm:text-2xl",children:"Best Place"})]})}export{e as S};

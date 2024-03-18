@@ -1,0 +1,1 @@
+import{p as i}from"./index-06c6c1f5.js";import{u as y}from"./useQuery-7f8ad36b.js";const p=(c,r,t)=>{const n=async()=>{try{return await i.collection(c).getOne(r,t)}catch(o){console.error(o)}},{data:s,isLoading:a,error:e,refetch:u}=y({queryKey:["record",r],queryFn:()=>n()});return e&&console.error(e),{data:s,isLoading:a,refetch:u}};export{p as u};

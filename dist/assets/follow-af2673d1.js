@@ -1,0 +1,1 @@
+import{c as e}from"./index-0b99c69c.js";import{d as s}from"./middleware-763781cb.js";const w=e(s(o=>({followCount:{following:0,follower:0},setFollowCount:(l,t)=>o(()=>({followCount:{following:l,follower:t}}),!1,"follow/setFollowCount")})));export{w as u};
